@@ -17,7 +17,7 @@ export function StudioProvider({ children }) {
   const [framing, setFraming] = useState(false), [activeStop, setActiveStop] = useState(null);
 
   const refresh = useCallback(async () => {
-    const [next, log] = await Promise.all([callTool('project_get'), callTool('history_list')]);
+    const [next, log] = await Promise.all([callTool('project_get', { detail: 'full' }), callTool('history_list')]);
     setProject(next); setHistory(log); setLoadError(null);
     select((id) => next.scenes.some((scene) => scene.id === id) ? id : next.scenes[0]?.id ?? null);
     return next;

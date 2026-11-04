@@ -49,6 +49,13 @@ function asScreenScene(scene) {
 const publicProject = ({ root, ...project }) => project;
 // Runtime fields a client may echo back from project_get or a tool result.
 const storedScene = ({ file, fingerprint, _change, ...scene }) => scene;
+// project_get's overview: the template snapshot and component internals stay in scene_get.
+const sceneSummary = ({ templateInstance: instance, components, ...scene }) => instance || components ? {
+  ...scene,
+  ...(instance ? { templateInstance: { template: instance.template, inputs: instance.inputs, settings: instance.settings, overrides: instance.overrides } } : {}),
+  ...(components ? { components: components.map(({ id, component }) => ({ id, component })) } : {}),
+  summarized: true,
+} : scene;
 // A screen's look: everything but the recording itself.
 const LOOK = Object.keys(Screen.shape).filter((key) => key !== 'asset');
 const isRecording = (scene) => ['recorded-showcase', 'focus-transition'].includes(scene.preset);
@@ -82,10 +89,11 @@ function framingWarnings(scenes) {
 export const TOOLS = [
   defineTool({
     name: 'project_get',
-    description: 'Read the whole project: output settings, theme, assets and every scene with its fingerprint. Start here.',
-    async run({ root, readText, fingerprint }) {
+    description: 'Read the project: output settings, theme, assets and every scene with its fingerprint. Start here. Scenes omit template snapshots and component internals (summarized: true); read one with scene_get, or pass detail "full".',
+    input: z.object({ detail: z.enum(['summary', 'full']).optional() }),
+    async run({ root, readText, fingerprint }, { detail = 'summary' } = {}) {
       const project = await loadProject(root);
-      const scenes = await Promise.all(project.scenes.map(async (scene) => ({ ...scene, fingerprint: scene.file ? fingerprint(await readText(scene.file)) : undefined })));
+      const scenes = await Promise.all(project.scenes.map(async (scene) => ({ ...(detail === 'full' ? scene : sceneSummary(scene)), fingerprint: scene.file ? fingerprint(await readText(scene.file)) : undefined })));
       return { ...publicProject(project), scenes, manifestFingerprint: fingerprint(await readText('project.json')) };
     },
   }),
@@ -344,6 +352,7 @@ export const TOOLS = [
     input: z.object({ id: sceneId, scene: z.looseObject({}), fingerprint: z.string().optional() }),
     summary: ({ id }) => `Save ${id}`,
     async run({ tx, fingerprint }, { id, scene, fingerprint: expected }) {
+      if (scene.summarized) throw new ToolError('This scene is the project_get summary. Read it with scene_get, edit that, then replace.');
       const { entry } = await entryFor(tx, id);
       if (expected && fingerprint(await tx.read(entry.file)) !== expected) throw new ToolError('Scene changed outside the preview. Reload it before saving.');
       const next = await editScene(tx, id, () => storedScene(scene));

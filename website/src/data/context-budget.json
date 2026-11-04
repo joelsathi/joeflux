@@ -4,10 +4,10 @@
     "systemPrompt": 216,
     "mcpInstructions": 252,
     "toolCount": 74,
-    "toolDefinitions": 10899,
+    "toolDefinitions": 10942,
     "groupedInstructions": 35,
-    "coreTools": 3411,
-    "directorTools": 9550
+    "coreTools": 3478,
+    "directorTools": 8673
   },
   "largestTools": [
     {
@@ -55,7 +55,8 @@
   },
   "results": {
     "prettyProject": 877,
-    "compactProject": 617
+    "compactProject": 617,
+    "summaryProject": 617
   },
   "brand": {
     "list": 72,

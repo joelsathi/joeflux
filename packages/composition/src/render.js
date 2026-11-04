@@ -46,7 +46,7 @@ export function createCompositionHost({ loadAsset, loadRuntime, transient = fals
           for (const original of scene.components) {
             const component = instantiateComponent(original.component, { ...original, fps: output.fps });
             const surface = document.createElement('canvas'); surface.width = output.width; surface.height = output.height;
-            const context = { canvas: surface, context: surface.getContext('2d'), output, project, scene, component, bounds: componentBounds(component, output) };
+            const context = { canvas: surface, context: surface.getContext('2d'), output, project, scene, component, bounds: componentBounds(component, output), theme: resolveTheme(project.theme, scene.theme) };
             const session = component.component === 'harness/proof' ? null : await runtime.createComponent(component.component, context);
             entry.components.push({ component, surface, context, session });
           }

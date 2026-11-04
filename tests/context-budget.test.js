@@ -18,7 +18,7 @@ const definitions = (list) => tokens(list.map(({ name, description, inputSchema 
 test('the fixed context of every agent turn stays within budget', async () => {
   within('all tool definitions', definitions(tools.list()), 11500);
   within('core tools listed to Claude Code', definitions(await groupedTools(tools, []).list()), 4000);
-  within('tools listed to the director', definitions(await groupedTools(tools, DIRECTOR_TOOLSETS.split(',').filter((group) => group !== 'core')).list()), 10500);
+  within('tools listed to the director', definitions(await groupedTools(tools, DIRECTOR_TOOLSETS.split(',').filter((group) => group !== 'core')).list()), 9500);
   within('system prompt and MCP instructions', tokens(SYSTEM_PROMPT) + tokens(INSTRUCTIONS) + tokens(GROUPED_INSTRUCTIONS), 600);
 });
 

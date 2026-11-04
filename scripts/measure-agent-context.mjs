@@ -24,7 +24,7 @@ const skillText = await Promise.all(skillFiles.map((file) => readFile(file, 'utf
 const entrySkills = skillFiles.filter((file) => file.endsWith('SKILL.md'));
 const largestSkill = Math.max(...await Promise.all(entrySkills.map(async (file) => tokens(await readFile(file, 'utf8')))));
 
-const project = await tools.call('project_get');
+const project = await tools.call('project_get', { detail: 'full' });
 const scene = project.scenes.map(({ fingerprint, ...item }) => item).sort((a, b) => json(b).length - json(a).length)[0];
 const patch = { id: scene.id, patch: { params: { title: 'One view of every service.' } } };
 const kits = await tools.call('brand_kit_list'), kit = await tools.call('brand_kit_get', { id: 'example' });
@@ -55,7 +55,7 @@ const budget = {
     files: skillFiles.length,
   },
   edits: { fullScene: tokens(json(scene)), mergePatch: tokens(json(patch)) },
-  results: { prettyProject: tokens(JSON.stringify(project, null, 2)), compactProject: tokens(json(project)) },
+  results: { prettyProject: tokens(JSON.stringify(project, null, 2)), compactProject: tokens(json(project)), summaryProject: tokens(json(await tools.call('project_get'))) },
   brand: { list: tokens(json(kits)), detail: tokens(json(kit)) },
   catalogs,
   images: { renderFrame: imageTokens(960, 540), qualityReview: 3 * imageTokens(640, 360), fullResolution: imageTokens(1568, 882) },

@@ -1,5 +1,5 @@
 import { createAnimeScene, createMotionScene, createThreeScene, createReactThreeScene, THREE, React } from './adapters.js';
-import { base, copy, easeProgress } from './drawing.js';
+import { backdrop, base, copy, easeProgress } from './drawing.js';
 import { pluginLayout, animeCardLayout, motionCardLayout, sculptureLayout } from './formats.js';
 const accent = context => context.scene.pluginOptions?.color ?? '#74e7cd';
 const anime = createAnimeScene({
@@ -43,8 +43,9 @@ const motion = createMotionScene({ draw({ seconds, interpolate, cubicBezier }, f
   }
   copy(context, { label: 'MOTION / INTERFACE CHOREOGRAPHY', opacity: easeProgress(seconds, .25) }); ctx.resetTransform();
 } });
-function setup({ THREE, output, scene: config }) {
-  const scene = new THREE.Scene(); scene.background = new THREE.Color('#0a1628');
+function setup(context) {
+  const { THREE, output, scene: config } = context;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(backdrop(context)[0]);
   const camera = new THREE.PerspectiveCamera(38, output.width / output.height, .1, 100); camera.position.set(0, 0, 7);
   scene.add(new THREE.HemisphereLight('#d6efff', '#152243', 2.2));
   for (const [color, intensity, position] of [['#d4ebff', 65, [-3, 4, 5]], ['#70ffd9', 45, [4, 1, 2]], ['#7184ff', 80, [1, 3, -4]]]) {
@@ -58,10 +59,10 @@ const three = createThreeScene({ setup,
   update({ object, placement }, seconds) { const p = easeProgress(seconds, 0, 2); object.rotation.set(.3 + (1 - p) * .45, -.65 + p * 1.2, -.15); object.scale.setScalar(placement.scale * (.65 + p * .35)); },
   overlay(frame, context) { copy(context, { label: 'THREE.JS / LIGHT · MATERIAL · FORM', opacity: easeProgress(frame / context.output.fps, .2) }); },
 });
-function Sculpture({ seconds, scene, output }) {
+function Sculpture({ seconds, scene, output, theme }) {
   const p = easeProgress(seconds, 0, 2), h = React.createElement, placement = sculptureLayout(output);
   return h(React.Fragment, null,
-    h('color', { attach: 'background', args: ['#0a1628'] }),
+    h('color', { attach: 'background', args: [backdrop({ theme })[0]] }),
     h('hemisphereLight', { args: ['#d6efff', '#152243', 2.2] }),
     h('pointLight', { position: [-3, 4, 5], intensity: 65, color: '#d4ebff' }),
     h('pointLight', { position: [4, 1, 2], intensity: 45, color: '#70ffd9' }),

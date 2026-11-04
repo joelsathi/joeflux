@@ -85,6 +85,6 @@ test('a landscape project can preview and add a composition template with suppor
     await page.getByRole('button',{name:/Choose Brand reveal template/}).click();
     await expect(page.getByRole('button',{name:'Add shot',exact:true}).last()).toBeEnabled();
     await page.getByRole('button',{name:'Add shot',exact:true}).last().click();
-    await expect.poll(async()=>(await createProjectTools(root).call('project_get')).scenes[0]?.kind).toBe('composition');
+    await expect.poll(async()=>(await createProjectTools(root).call('project_get',{detail:'full'})).scenes[0]?.kind).toBe('composition');
   }finally{await browser.close();await server.close();}
 });

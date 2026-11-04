@@ -1,3 +1,4 @@
+import { resolveTheme } from '../../presets/src/themes.js';
 let runtime;
 let transientQueue=Promise.resolve();
 const runtimeUrl = '/animation-plugins/runtime.js';
@@ -18,12 +19,13 @@ export function createPluginHost({transient=false}={}) {
     render(canvas, scene, frame, output, project, isCurrent, factory) {
       return enqueue(async () => {
         if (!isCurrent()) return null;
-        const key = JSON.stringify([scene, output]);
+        // Plugins may draw with the resolved theme, so a theme change must rebuild the session.
+        const theme = resolveTheme(project?.theme, scene.theme), key = JSON.stringify([scene, output, theme]);
         let entry = sessions.get(canvas);
         if (entry?.key !== key || entry?.factory !== factory) {
           entry?.session.dispose(); sessions.delete(canvas);
           const buffer = document.createElement('canvas'); buffer.width = output.width; buffer.height = output.height;
-          const context = { canvas: buffer, context: buffer.getContext('2d'), output, project, scene };
+          const context = { canvas: buffer, context: buffer.getContext('2d'), output, project, scene, theme };
           const session = factory ? await factory(context) : await (await loadAnimationPlugins()).createPlugin(scene.plugin, context);
           entry = { key, factory, buffer, session }; sessions.set(canvas, entry);
         }

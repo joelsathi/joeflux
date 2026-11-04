@@ -11,7 +11,7 @@ The Studio, `pnpm tool` and MCP clients call the same 74 tools. Mutating tools v
 
 | Tool | Changes the project | Description |
 | --- | --- | --- |
-| `project_get` | No | Read the whole project: output settings, theme, assets and every scene with its fingerprint. Start here. |
+| `project_get` | No | Read the project: output settings, theme, assets and every scene with its fingerprint. Start here. Scenes omit template snapshots and component internals (summarized: true); read one with scene_get, or pass detail "full". |
 | `scene_get` | No | Read one scene as saved. |
 | `catalog` | No | List everything a scene can use: scene presets, camera moves, easings, themes, background styles, text templates and transitions. Pass include ["screenScene"] for the screen-scene JSON Schema. |
 | `validate` | No | Validate the saved project: errors block rendering; warnings are advice, e.g. adjacent screen shots whose padding, size or frame differ. |

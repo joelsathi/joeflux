@@ -22,8 +22,12 @@ export const TOOL_GROUPS = {
     tools: ['brief_get', 'brief_update', 'brief_decision_set', 'brief_question_set', 'brief_interview_start', 'brief_interview_finish'],
   },
   review: {
-    summary: 'Recorded reviews and the reference and pattern knowledge base.',
-    tools: ['review_record', 'review_get', 'knowledge_search', 'knowledge_reference_set', 'knowledge_pattern_set'],
+    summary: 'Recording and reading evidence-backed reviews, and searching the knowledge base.',
+    tools: ['review_record', 'review_get', 'knowledge_search'],
+  },
+  knowledge: {
+    summary: 'Saving references and patterns to the knowledge base.',
+    tools: ['knowledge_reference_set', 'knowledge_pattern_set'],
   },
 };
 

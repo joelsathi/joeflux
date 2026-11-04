@@ -119,7 +119,7 @@ export function projectApi(projectRoot, tools, studio) {
           if (request.method === 'POST' && url.pathname === '/chat') return streamChat(projectRoot, studio, body, request, response);
           // Legacy preview endpoints, kept as thin wrappers so every change goes through the tools.
           const legacy = {
-            'GET /project': () => ['project_get', {}],
+            'GET /project': () => ['project_get', { detail: 'full' }],
             'PUT /project': (body) => ['project_update', { theme: body.theme, fingerprint: body.fingerprint }],
             'POST /render': (body) => ['render_scene', { id: body.sceneId, force: true }],
             'POST /assemble': () => ['assemble', {}],

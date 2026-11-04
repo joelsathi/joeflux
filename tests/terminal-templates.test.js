@@ -54,15 +54,15 @@ test('terminal transcripts persist through apply/edit/undo and refuse edits that
   await writeFile(path.join(root, 'project.json'), JSON.stringify({ version: 1, name: 'Terminal template', output: { width: 640, height: 360, fps: 24, audio: false }, assets: {}, scenes: [] }));
   const tools = createProjectTools(root), transcript = '$ app init\nCreated project';
   await tools.call('template_apply', { template: 'terminal-light', id: 'terminal', slots: { transcript }, duration: 'long' });
-  let scene = (await tools.call('project_get')).scenes[0];
+  let scene = (await tools.call('project_get',{detail:'full'})).scenes[0];
   const componentId = scene.components[0].id;
   assert.equal(scene.components[0].inputs.transcript, transcript);
   await tools.call('component_set_input', { id: 'terminal', componentId, input: 'transcript', value: '$ app init\nCreated project\nDone' });
   await tools.call('history_undo');
-  scene = (await tools.call('project_get')).scenes[0];
+  scene = (await tools.call('project_get',{detail:'full'})).scenes[0];
   assert.equal(scene.components[0].inputs.transcript, transcript);
   await assert.rejects(tools.call('component_set_input', { id: 'terminal', componentId, input: 'transcript', value: '$ ' + 'x'.repeat(990) }), error => error.issues?.some(issue => /hold|short|lengthen/.test(issue)));
-  assert.equal((await tools.call('project_get')).scenes[0].components[0].inputs.transcript, transcript);
+  assert.equal((await tools.call('project_get',{detail:'full'})).scenes[0].components[0].inputs.transcript, transcript);
 });
 
 test('invalid terminal input produces validation errors instead of throwing from timing', async () => {

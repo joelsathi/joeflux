@@ -12,7 +12,7 @@ Read the target project's WORKING_STATE.md and context/workflows.md. These plugi
 - Three.js / React Three Fiber: real geometry, materials, lights and camera; use three-video.
 - VengeanceUI: MIT source components to adapt selectively. It is researched, not an installed renderer or a ready-made video plugin. Do not install its website or imply every interactive component exports deterministically.
 
-Installed engines, versions and upstream links are available through animation_plugin_list. Ready-to-use shots are plugin-animejs, plugin-motion, plugin-threejs and plugin-react-three in template_list/template_apply and the studio template picker. Customize title/subtitle, duration, and pluginOptions.color. quality is 1 or 2 for 3D supersampling; it does not alter timing. The initial templates use their own dark art direction; the project theme does not recolor their materials.
+Installed engines, versions and upstream links are available through animation_plugin_list. Ready-to-use shots are plugin-animejs, plugin-motion, plugin-threejs and plugin-react-three in template_list/template_apply and the studio template picker. Customize title/subtitle, duration, and pluginOptions.color. quality is 1 or 2 for 3D supersampling; it does not alter timing. The initial templates use their own dark art direction. A dark project theme lends them its background (plugins and the dark terminal read context.theme through backdrop/themeBackdrop) so shots cut cleanly; light themes keep the plugin backdrop, and the theme never recolors their materials.
 
 ## Author useful motion
 

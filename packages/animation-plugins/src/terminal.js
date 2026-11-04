@@ -1,4 +1,5 @@
 import { terminalFrameState, terminalGraphemes, terminalTimeline, terminalScrollOffset, terminalVisualRowArrival } from '../../composition/src/terminal.js';
+import { themeBackdrop } from './drawing.js';
 const clamp = value => Math.max(0, Math.min(1, value));
 const ease = value => { const t = clamp(value); return t * t * (3 - 2 * t); };
 const themes = {
@@ -91,8 +92,13 @@ export async function createTerminal(context) {
     const handoff = state.stages.length > 1 ? ease((seconds - state.stages[0].end) / .6) : 0;
     ctx.save();
     try {
-      ctx.beginPath(); ctx.rect(b.x, b.y, b.width, b.height); ctx.clip(); ctx.globalAlpha *= opacity; ctx.textBaseline = 'top'; ctx.textAlign = 'left';
-      ctx.fillStyle = palette.bg; ctx.fillRect(b.x, b.y, b.width, b.height);
+      ctx.beginPath(); ctx.rect(b.x, b.y, b.width, b.height); ctx.clip();
+      // The dark palette sits on a dark project theme's background, drawn before the fade so the
+      // shot cuts cleanly against themed shots; only the terminal content fades in and out.
+      const themed = (inputs.palette ?? 'dark') === 'dark' && themeBackdrop(context);
+      if (themed) { const gradient = ctx.createLinearGradient(b.x, b.y, b.x + b.width, b.y + b.height); gradient.addColorStop(0, themed[0]); gradient.addColorStop(1, themed[1]); ctx.fillStyle = gradient; ctx.fillRect(b.x, b.y, b.width, b.height); }
+      ctx.globalAlpha *= opacity; ctx.textBaseline = 'top'; ctx.textAlign = 'left';
+      if (!themed) { ctx.fillStyle = palette.bg; ctx.fillRect(b.x, b.y, b.width, b.height); }
       copy(ctx, inputs.subtitle ?? '', x, b.y + pad * .6, width, headerHeight * .22, unit * .015, unit * .009, accent);
       copy(ctx, inputs.title ?? '', x, b.y + pad * .6 + headerHeight * .25, width, headerHeight * .65, unit * .047, unit * .022, palette.text);
       panel(state.stages[0], 0, -handoff * (width + pad), 1 - handoff, seconds);

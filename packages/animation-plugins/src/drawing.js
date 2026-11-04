@@ -1,6 +1,16 @@
 import { pluginLayout } from './formats.js';
 const fontFamily = '"Harness Inter", sans-serif';
 
+// A dark project theme lends its background so plugin shots cut cleanly against themed shots.
+// Light themes keep the plugins' own dark backdrop, which their type and materials are designed for.
+const DEFAULT_BACKDROP = ['#0a1628', '#101c37'];
+const isDarkHex = (hex) => { const value = /^#([0-9a-f]{6})$/i.exec(hex ?? '')?.[1]; if (!value) return false; const [r, g, b] = [0, 2, 4].map((i) => parseInt(value.slice(i, i + 2), 16)); return (r * .299 + g * .587 + b * .114) / 255 < .35; };
+export function themeBackdrop(context) {
+  const theme = context?.theme;
+  return theme && isDarkHex(theme.background) ? [theme.background, isDarkHex(theme.backgroundEnd) ? theme.backgroundEnd : theme.background] : null;
+}
+export const backdrop = (context) => themeBackdrop(context) ?? DEFAULT_BACKDROP;
+
 export function base(context) {
   const { canvas, output, context: ctx } = context, layout = pluginLayout(output);
   if (canvas.width !== output.width) canvas.width = output.width;
@@ -8,7 +18,8 @@ export function base(context) {
   ctx.setTransform(layout.scale, 0, 0, layout.scale, 0, 0);
   ctx.globalAlpha = 1;
   const gradient = ctx.createLinearGradient(0, 0, layout.width, layout.height);
-  gradient.addColorStop(0, '#0a1628'); gradient.addColorStop(1, '#101c37');
+  const [start, end] = backdrop(context);
+  gradient.addColorStop(0, start); gradient.addColorStop(1, end);
   ctx.fillStyle = gradient; ctx.fillRect(0, 0, layout.width, layout.height);
   return ctx;
 }

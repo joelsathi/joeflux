@@ -54,3 +54,20 @@ test('template poster renders once and reuses its runtime cache', async () => {
   assert.equal(second.cached, true);
   assert.ok((await stat(path.join(root, first.file))).size > 100);
 });
+
+test('project_get summarizes template scenes and guards scene_replace against the summary', async () => {
+  const tools = createProjectTools(await fixture());
+  for (const [template, id] of [['brand-reveal', 'cta'], ['plugin-motion', 'plan']]) await tools.call('template_apply', { template, id });
+  const tokens = (value) => Math.round(JSON.stringify(value).length / 4);
+  const summary = await tools.call('project_get'), full = await tools.call('project_get', { detail: 'full' });
+  const cta = summary.scenes.find((scene) => scene.id === 'cta');
+  assert.equal(cta.summarized, true);
+  assert.deepEqual(Object.keys(cta.templateInstance).sort(), ['inputs', 'overrides', 'settings', 'template']);
+  assert.deepEqual(cta.components.map((item) => Object.keys(item)), [['id', 'component'], ['id', 'component'], ['id', 'component']]);
+  assert.equal(cta.fingerprint, full.scenes.find((scene) => scene.id === 'cta').fingerprint);
+  assert.ok(full.scenes.every((scene) => scene.templateInstance.definition && !scene.summarized));
+  assert.ok(tokens(summary) < tokens(full) / 2, `${tokens(summary)} vs ${tokens(full)}`);
+  await assert.rejects(tools.call('scene_replace', { id: 'cta', scene: cta, fingerprint: cta.fingerprint }), /scene_get/);
+  const saved = await tools.call('scene_get', { id: 'cta' });
+  assert.ok(saved.templateInstance.definition && saved.components[0].inputs);
+});

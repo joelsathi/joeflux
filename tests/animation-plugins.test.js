@@ -53,3 +53,13 @@ test('bundle license policy rejects non-MIT, mixed and missing declarations', as
     assert.throws(()=>requireMitLicense({name:'unapproved',license}),/require MIT/);
   }
 });
+
+test('plugin backdrops take a dark project theme and keep their own under light themes', async () => {
+  const { backdrop } = await import('../packages/animation-plugins/src/drawing.js');
+  assert.deepEqual(backdrop({ theme: { background: '#18263D', backgroundEnd: '#213B59' } }), ['#18263D', '#213B59']);
+  assert.deepEqual(backdrop({ theme: { background: '#F8FBFD', backgroundEnd: '#EDF4F7' } }), ['#0a1628', '#101c37']);
+  assert.deepEqual(backdrop({ theme: { background: '#18263D', backgroundEnd: '#F8FBFD' } }), ['#18263D', '#18263D']);
+  assert.deepEqual(backdrop({}), ['#0a1628', '#101c37']);
+  const { themeBackdrop } = await import('../packages/animation-plugins/src/drawing.js');
+  assert.equal(themeBackdrop({ theme: { background: '#F8FBFD' } }), null);
+});

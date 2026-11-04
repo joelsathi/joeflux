@@ -66,7 +66,7 @@ The agent sees the one-line skill catalog, loads one `SKILL.md` with `skill_get`
   { label: 'project_get, compact', value: budget.results.compactProject },
 ]} unit=" tok" />
 
-MCP tool results are serialized without indentation. Images are attached only by the tools whose job is to show frames.
+MCP tool results are serialized without indentation. Images are attached only by the tools whose job is to show frames. `project_get` returns scenes as a summary: a template scene keeps its template id, inputs and settings but not the template definition snapshot, and components are listed by id and component only. Such scenes carry `summarized: true`, `scene_replace` refuses them, and `scene_get` or `project_get` with `detail: "full"` returns everything. With the five templates of a 30-second teaser this cut `project_get` from about 3,200 to about 970 tokens.
 
 ### Catalogs return summaries first
 

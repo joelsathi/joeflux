@@ -24,16 +24,16 @@ test('terminal template accepts multiline copy and preserves Enter while editing
     await field.fill(transcript);
     await page.getByRole('button', { name: 'Add shot', exact: true }).last().click();
     await expect(page.getByRole('dialog')).toBeHidden();
-    await expect.poll(async () => (await tools.call('project_get')).scenes[0]?.components[0].inputs.transcript).toBe(transcript);
+    await expect.poll(async () => (await tools.call('project_get',{detail:'full'})).scenes[0]?.components[0].inputs.transcript).toBe(transcript);
     const inspector = page.getByRole('complementary', { name: 'Inspector' }), applied = inspector.getByLabel(fieldLabel, { exact: true });
     await applied.fill('$ demo start'); await applied.press('End'); await applied.press('Enter'); await applied.pressSequentially('Updated output');
     assert.equal(await applied.inputValue(), '$ demo start\nUpdated output');
-    assert.equal((await tools.call('project_get')).scenes[0].components[0].inputs.transcript, transcript);
+    assert.equal((await tools.call('project_get',{detail:'full'})).scenes[0].components[0].inputs.transcript, transcript);
     await applied.press('Control+Enter');
-    await expect.poll(async () => (await tools.call('project_get')).scenes[0].components[0].inputs.transcript).toBe('$ demo start\nUpdated output');
+    await expect.poll(async () => (await tools.call('project_get',{detail:'full'})).scenes[0].components[0].inputs.transcript).toBe('$ demo start\nUpdated output');
     await inspector.getByLabel('Terminal theme', { exact: true }).last().click();
     await page.getByRole('option', { name: 'Dark', exact: true }).click();
-    await expect.poll(async () => (await tools.call('project_get')).scenes[0].components[0].inputs.palette).toBe('dark');
+    await expect.poll(async () => (await tools.call('project_get',{detail:'full'})).scenes[0].components[0].inputs.palette).toBe('dark');
     await page.waitForFunction(() => document.querySelector('.stage canvas')?.dataset.renderedFrame);
   } finally { await browser.close(); await server.close(); }
 });

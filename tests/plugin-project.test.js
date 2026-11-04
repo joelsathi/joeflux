@@ -33,20 +33,20 @@ test('a local data package contributes a template, applies pinned inputs and sur
   assert.ok(scene.templateInstance.definition);
   assert.equal((await tools.call('validate')).valid,true);
   await tools.call('history_undo');
-  assert.equal((await tools.call('project_get')).scenes.length,0);
+  assert.equal((await tools.call('project_get',{detail:'full'})).scenes.length,0);
   assert.ok((await tools.call('template_list')).some(t=>t.id===item.id));
   await tools.call('history_redo');
-  assert.equal((await tools.call('project_get')).scenes[0].params.title,'Six checks passed');
+  assert.equal((await tools.call('project_get',{detail:'full'})).scenes[0].params.title,'Six checks passed');
 });
 
 test('disabling a package removes contributions but preserves authored scene data and reports availability',async()=>{
   const {pack,tools}=await fixture();
   await tools.call('plugin_install',{directory:pack});
   await tools.call('template_apply',{template:'example/proof-pack/result',id:'proof'});
-  const original=(await tools.call('project_get')).scenes[0];
+  const original=(await tools.call('project_get',{detail:'full'})).scenes[0];
   await tools.call('plugin_enable',{id:'example/proof-pack',enabled:false});
   assert.ok(!(await tools.call('template_list')).some(t=>t.id==='example/proof-pack/result'));
-  assert.deepEqual((await tools.call('project_get')).scenes[0],original);
+  assert.deepEqual((await tools.call('project_get',{detail:'full'})).scenes[0],original);
   const status=await tools.call('plugin_status');
   assert.ok(status.findings.some(f=>f.scene==='proof'&&f.status==='disabled'));
   await tools.call('history_undo');
@@ -57,7 +57,7 @@ test('contributed fields reject unknown and invalid values atomically',async()=>
   const {pack,tools}=await fixture(); await tools.call('plugin_install',{directory:pack});
   await assert.rejects(tools.call('template_apply',{template:'example/proof-pack/result',id:'bad',controls:{accent:'url(https://x)'}}));
   await assert.rejects(tools.call('template_apply',{template:'example/proof-pack/result',id:'bad',controls:{unknown:1}}));
-  assert.equal((await tools.call('project_get')).scenes.length,0);
+  assert.equal((await tools.call('project_get',{detail:'full'})).scenes.length,0);
 });
 
 test('saved template fields edit the full instance and remain undoable after package disable',async()=>{
@@ -65,22 +65,22 @@ test('saved template fields edit the full instance and remain undoable after pac
   await tools.call('template_apply',{template:'example/proof-pack/result',id:'proof'});
   await tools.call('plugin_enable',{id:'example/proof-pack',enabled:false});
   await tools.call('template_set_control',{id:'proof',control:'accent',value:'#abcdef'});
-  const scene=(await tools.call('project_get')).scenes[0];
+  const scene=(await tools.call('project_get',{detail:'full'})).scenes[0];
   assert.equal(scene.pluginOptions.color,'#abcdef');
   assert.equal(scene.templateInstance.inputs.title,'A real result');
   assert.equal(scene.templateInstance.overrides['pluginOptions.color'],'#abcdef');
   await tools.call('history_undo');
-  assert.equal((await tools.call('project_get')).scenes[0].pluginOptions.color,'#74e7cd');
+  assert.equal((await tools.call('project_get',{detail:'full'})).scenes[0].pluginOptions.color,'#74e7cd');
 });
 
 test('package upgrades never rewrite pinned authored instances',async()=>{
   const {pack,tools}=await fixture(); await tools.call('plugin_install',{directory:pack});
   await tools.call('template_apply',{template:'example/proof-pack/result',id:'proof'});
-  const before=(await tools.call('project_get')).scenes[0];
+  const before=(await tools.call('project_get',{detail:'full'})).scenes[0];
   const manifest=JSON.parse(await readFile(path.join(pack,'plugin.json'),'utf8'));
   await writeFile(path.join(pack,'plugin.json'),JSON.stringify({...manifest,version:'2.0.0'}));
   await tools.call('plugin_install',{directory:pack});
-  assert.deepEqual((await tools.call('project_get')).scenes[0],before);
+  assert.deepEqual((await tools.call('project_get',{detail:'full'})).scenes[0],before);
   assert.equal((await tools.call('plugin_status')).findings[0].status,'version-mismatch');
   await tools.call('history_undo');
   assert.deepEqual((await tools.call('plugin_status')).findings,[]);
@@ -89,9 +89,9 @@ test('package upgrades never rewrite pinned authored instances',async()=>{
 test('composition template controls preserve sibling layers and enforce motion locks',async()=>{
   const {tools}=await fixture();
   await tools.call('template_apply',{template:'brand-reveal',id:'brand'});
-  const original=(await tools.call('project_get')).scenes[0];
+  const original=(await tools.call('project_get',{detail:'full'})).scenes[0];
   await tools.call('template_set_control',{id:'brand',control:'treatment',value:'bold'});
-  const edited=(await tools.call('project_get')).scenes[0];
+  const edited=(await tools.call('project_get',{detail:'full'})).scenes[0];
   assert.equal(edited.components[0].inputs.treatment,'bold');
   assert.deepEqual(edited.components.slice(1),original.components.slice(1));
   await tools.call('component_lock',{id:'brand',componentId:edited.components[0].id,scope:'motion',locked:true});
