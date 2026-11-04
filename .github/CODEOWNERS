@@ -1,0 +1,30 @@
+# Code owners are requested for review on pull requests that touch their paths.
+# The last matching rule wins: keep the catch-all first and add reviewers to specific paths below.
+
+# Default owner for everything
+*                             @joelsathi
+
+# Agent harness: instructions, skills, MCP server, Claude Code settings
+/AGENTS.md                    @joelsathi
+/CLAUDE.md                    @joelsathi
+/.mcp.json                    @joelsathi
+/.claude/                     @joelsathi
+/skills/                      @joelsathi
+/packages/mcp/                @joelsathi
+/packages/tools/              @joelsathi
+
+# Licensing-sensitive: bundled engines and third-party notices (MIT-only policy)
+/packages/animation-plugins/  @joelsathi
+/THIRD_PARTY_NOTICES.md       @joelsathi
+/vendor/                      @joelsathi
+
+# Rendering pipeline
+/packages/renderer/           @joelsathi
+/packages/composition/        @joelsathi
+
+# Brand kits and docs site
+/brand-kits/                  @joelsathi
+/website/                     @joelsathi
+
+# CI and repository settings
+/.github/                     @joelsathi
