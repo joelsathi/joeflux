@@ -64,7 +64,7 @@ export function FrameOverlay({ plane }) {
   };
   const centers = stops.map((stop) => { const rect = toRect(stop); return `${(rect.x + rect.size / 2) * 100},${(rect.y + rect.size / 2) * 100}`; }).join(' ');
   return (
-    <Box className="frame-overlay" style={plane} onPointerDown={(event) => down(event)} onPointerMove={move} onPointerUp={up} onPointerCancel={up} role="application" aria-label="Frame areas: drag on the recording to add an area">
+    <Box className="frame-overlay" style={plane} onPointerDown={(event) => down(event)} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onDragStart={(event) => event.preventDefault()} role="application" aria-label="Frame areas: drag on the recording to add an area">
       <svg className="frame-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         {stops.length > 1 && <polyline points={centers} />}
         {guides.map((guide) => guide.axis ? <line key={`y${guide.at}`} x1="0" x2="100" y1={guide.at * 100} y2={guide.at * 100} className="guide" /> : <line key={`x${guide.at}`} y1="0" y2="100" x1={guide.at * 100} x2={guide.at * 100} className="guide" />)}

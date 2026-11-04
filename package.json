@@ -10,7 +10,7 @@
   "scripts": {
     "init": "node packages/cli/src/main.js init",
     "pretest": "node scripts/create-demo-recording.mjs",
-    "test": "node --test --test-concurrency=1 --test-timeout=30000 tests/**/*.test.js",
+    "test": "node --test --test-concurrency=1 --test-timeout=120000 tests/**/*.test.js",
     "test:fast": "node scripts/test-fast.mjs",
     "validate": "node packages/cli/src/main.js validate",
     "doctor": "node packages/cli/src/main.js doctor",

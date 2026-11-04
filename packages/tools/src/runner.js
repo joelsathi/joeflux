@@ -234,9 +234,8 @@ export function createToolRunner(projectRoot, tools) {
         const scenes = await readdir(file('scenes')).catch(() => []);
         for (const relative of ['project.json', ...scenes.filter((name) => name.endsWith('.json')).map((name) => `scenes/${name}`)]) if (!known.has(relative)) known.set(relative, await readText(relative));
       })();
-      const watcher = watch(root, { recursive: true }, (_, name) => {
-        const relative = name?.replaceAll('\\', '/');
-        if (!relative || !/^(project\.json|scenes\/.+\.json)$/.test(relative)) return;
+      const report = (relative) => {
+        if (!/^(project\.json|scenes\/[^/]+\.json)$/.test(relative)) return;
         changed.add(relative); clearTimeout(timer);
         timer = setTimeout(async () => {
           await seeded;
@@ -245,9 +244,18 @@ export function createToolRunner(projectRoot, tools) {
           changed = new Set();
           if (files.length) emit({ type: 'change', source: 'external', files });
         }, 120);
-      });
+      };
+      // Two directory watches instead of one recursive watch: on Linux, Node 22's recursive
+      // watcher follows file inodes and goes silent once an atomic rename replaces a scene file.
+      const watchers = [];
+      const watchScenes = () => { try { watchers.push(watch(file('scenes'), (_, name) => name && report(`scenes/${name}`))); return true; } catch { return false; } };
+      let scenesWatched = watchScenes();
+      watchers.push(watch(root, (_, name) => {
+        if (name === 'scenes' && !scenesWatched) scenesWatched = watchScenes();
+        if (name) report(name);
+      }));
       runner.ready = seeded;
-      return () => { clearTimeout(timer); watcher.close(); };
+      return () => { clearTimeout(timer); for (const watcher of watchers) watcher.close(); };
     },
   };
   function serialize(task) { const locked = () => withProjectLock(root, 'project-mutations', task); const next = queue.then(locked, locked); queue = next.catch(() => {}); return next; }

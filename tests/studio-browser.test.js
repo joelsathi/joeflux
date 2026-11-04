@@ -41,7 +41,9 @@ test('the studio edits shots through tools, with undo, and follows outside edits
     await eventually(async () => assert.equal((await scene(root, 'tour')).camera.shots.length, 6), 'detail pan applied');
     await page.getByRole('button', { name: 'Undo' }).click();
     await eventually(async () => assert.equal((await scene(root, 'tour')).camera.shots.length, 3), 'undo restores shots');
-    await page.keyboard.press('Meta+Shift+z');
+    // The shortcut reads the Studio's history, which refreshes after the undo lands on disk.
+    await page.waitForSelector('button[aria-label="Redo"]:not([disabled])');
+    await page.keyboard.press('ControlOrMeta+Shift+z');
     await eventually(async () => assert.equal((await scene(root, 'tour')).camera.shots.length, 6), 'keyboard redo');
 
     await page.getByRole('tab', { name: 'Screen' }).click();
