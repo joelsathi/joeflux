@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "name": "Product rhythm demo",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "productScreen": "assets/demo-recording.mp4"
+  },
+  "scenes": [
+    { "id": "ambient-opening", "file": "scenes/ambient-opening.json" },
+    { "id": "text-settle", "file": "scenes/text-settle.json" },
+    { "id": "floating-cards", "file": "scenes/floating-cards.json" },
+    { "id": "feature-list", "file": "scenes/feature-list.json" },
+    { "id": "screen-handoff", "file": "scenes/screen-handoff.json" },
+    { "id": "recorded-showcase", "file": "scenes/recorded-showcase.json" },
+    { "id": "focus-hold", "file": "scenes/focus-hold.json" }
+  ]
+}

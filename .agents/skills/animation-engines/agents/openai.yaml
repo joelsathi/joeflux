@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animation Engines"
+  short_description: "Choose a bundled MIT animation engine with the user"
+  default_prompt: "Use $animation-engines to offer animation options for this shot and wait for my choice."

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "name": "New silent video",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {},
+  "scenes": [
+    { "id": "opening", "file": "scenes/opening.json" }
+  ]
+}

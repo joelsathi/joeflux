@@ -1,0 +1,12 @@
+{
+  "id": "floating-cards",
+  "preset": "floating-cards",
+  "durationFrames": 132,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "A connected product story",
+    "title": "Bring the picture together.",
+    "items": ["Customer context", "Relevant signals", "The next decision"]
+  },
+  "transition": { "type": "crossfade", "frames": 12 }
+}

@@ -1,0 +1,32 @@
+name: Data-pack contribution
+description: Propose a local data-only template pack or compatibility change.
+title: "[Pack]: "
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose and input contract
+      description: Explain the result, slots/controls, declared renderers and long/empty/missing-input behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Manifest and compatibility
+      description: Package ID, exact version, API version, dependency versions and snapshot digest. Executable entry points are unsupported in API v1.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Rights and provenance
+      description: State pack code/data license and separate terms for fonts, artwork, footage, models and brands.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Conformance and inspected media
+      description: Include checker output, tested formats/durations/runtimes and actual frame/playback evidence. Distinguish pending review from approval.
+    validations:
+      required: true

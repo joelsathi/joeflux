@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "kits": [
+    {
+      "id": "example",
+      "name": "Example Studio",
+      "logos": {
+        "onDark": "logos/logo-on-dark.svg",
+        "onLight": "logos/logo-on-light.svg"
+      },
+      "logoPlacement": {
+        "corner": "top-left",
+        "width": 300,
+        "margin": [
+          96,
+          64
+        ]
+      },
+      "fonts": [],
+      "themes": [
+        {
+          "label": "Example Studio · dark",
+          "backgroundEnd": "#16123A",
+          "surface": "#1A1C38",
+          "muted": "#C9C6F5",
+          "border": "#3A3766",
+          "particle": "#3DD6C6",
+          "font": "\"Harness Inter\", system-ui, sans-serif",
+          "id": "dark",
+          "mode": "dark",
+          "background": "#0B0D1F",
+          "text": "#FFFFFF",
+          "accent": "#8B7CFF"
+        },
+        {
+          "label": "Example Studio · light",
+          "backgroundEnd": "#EEF0FB",
+          "surface": "#FFFFFF",
+          "muted": "#545779",
+          "border": "#D9DAF0",
+          "particle": "#6E5BFF",
+          "font": "\"Harness Inter\", system-ui, sans-serif",
+          "id": "light",
+          "mode": "light",
+          "background": "#FBFAFF",
+          "text": "#14162B",
+          "accent": "#6E5BFF"
+        }
+      ],
+      "backgrounds": [
+        {
+          "muted": "#C9C6F5",
+          "safeArea": [
+            0.1,
+            0.12,
+            0.8,
+            0.76
+          ],
+          "id": "aurora",
+          "label": "Aurora",
+          "file": "backgrounds/aurora.svg",
+          "mode": "dark",
+          "colors": [
+            "#0B0D1F",
+            "#16123A"
+          ],
+          "text": "#FFFFFF",
+          "accent": "#8B7CFF"
+        },
+        {
+          "muted": "#545779",
+          "safeArea": [
+            0.1,
+            0.12,
+            0.8,
+            0.76
+          ],
+          "id": "paper",
+          "label": "Paper",
+          "file": "backgrounds/paper.svg",
+          "mode": "light",
+          "colors": [
+            "#FBFAFF",
+            "#EEF0FB"
+          ],
+          "text": "#14162B",
+          "accent": "#6E5BFF"
+        }
+      ],
+      "bookends": [
+        {
+          "label": "Intro",
+          "id": "intro",
+          "role": "intro",
+          "file": "bookends/intro.mp4",
+          "seconds": 3
+        },
+        {
+          "label": "Outro",
+          "id": "outro",
+          "role": "outro",
+          "file": "bookends/outro.mp4",
+          "seconds": 3
+        }
+      ],
+      "guidelines": "guidelines.md"
+    }
+  ]
+}

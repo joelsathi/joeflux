@@ -1,0 +1,6 @@
+{
+  "id": "screen-handoff", "label": "Screen handoff", "category": "Transitions", "description": "One screen retreats while the next arrives on the same plane.",
+  "scene": { "preset": "screen-handoff", "connectionStyle": "continuous", "durationFrames": 144, "params": { "title": "{{title}}", "subtitle": "{{subtitle}}", "outgoingAsset": "{{outgoingAsset}}", "incomingAsset": "{{incomingAsset}}" } },
+  "slots": [{ "id": "outgoingAsset", "type": "asset", "required": true }, { "id": "incomingAsset", "type": "asset", "required": true }, { "id": "title", "type": "text", "maxLength": 64, "default": "A clearer next step" }, { "id": "subtitle", "type": "text", "maxLength": 110, "default": "From insight to action" }],
+  "controls": { "durations": { "short": 4, "medium": 6, "long": 8 } }
+}

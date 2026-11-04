@@ -1,0 +1,13 @@
+{
+  "id": "screen-handoff",
+  "preset": "screen-handoff",
+  "theme": "navy-dark",
+  "durationFrames": 144,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "From context to action",
+    "title": "Move into the decision.",
+    "subtitle": "A spatial screen handoff with a clear reading hold.",
+    "asset": "productScreen"
+  }
+}

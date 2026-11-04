@@ -1,0 +1,11 @@
+{
+  "manifestVersion": 1,
+  "apiVersion": 1,
+  "id": "example/proof-pack",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {},
+  "entryPoints": {},
+  "capabilities": { "execution": "data", "offline": true },
+  "contributes": { "templates": ["templates/proof-reveal.json"] }
+}

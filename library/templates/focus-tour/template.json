@@ -1,0 +1,6 @@
+{
+  "id": "focus-tour", "label": "Focus tour", "category": "Screen", "description": "Glide into a detail, hold, then return to the whole product.",
+  "scene": { "kind": "screen", "durationFrames": 120, "params": { "title": "{{title}}" }, "screen": { "asset": "{{asset}}", "presentation": "studio", "backdrop": "slate", "padding": 0.12, "radius": 22, "shadow": "floating", "frame": "browser-dark", "lighting": { "style": "glow", "intensity": 0.55 } }, "camera": { "ease": "gentle", "shots": [{ "at": 0 }, { "at": 0.28, "focus": [0.7, 0.38], "zoom": 2 }, { "at": 0.67, "focus": [0.7, 0.38], "zoom": 2 }, { "at": 1 }] } },
+  "slots": [{ "id": "asset", "type": "asset", "required": true }, { "id": "title", "type": "text", "maxLength": 72, "default": "Explore the product" }],
+  "controls": { "durations": { "short": 3, "medium": 5, "long": 8 }, "intensity": { "path": "camera.shots.1.zoom", "base": 2, "scale": 0.7, "mirrorPath": "camera.shots.2.zoom" } }
+}

@@ -1,0 +1,59 @@
+---
+title: System overview
+description: How projects, tools, renderers and agents fit together.
+---
+
+# System overview
+
+JoeFlux is a set of small Node packages around one idea: **a video is a folder of JSON scenes evaluated by frame**. Every editor, from the Studio to an AI agent, changes that folder through one tool layer, and one browser renderer turns it into pixels for both preview and export.
+
+```mermaid
+flowchart TB
+  subgraph Clients
+    Studio["Studio<br/>React + Oxygen UI"]
+    CLI["pnpm tool / CLI"]
+    Agent["Agent CLI<br/>Claude Code · Codex · Copilot"]
+  end
+  Agent -->|stdio| MCP["MCP server<br/>packages/mcp"]
+  Studio -->|"HTTP /api/tools + SSE"| Server["Preview server<br/>packages/preview-server"]
+  Server --> Tools
+  MCP --> Tools
+  CLI --> Tools
+  Tools["Tool layer<br/>packages/tools<br/>zod schemas · transactions · undo"] --> Project[("Project folder<br/>project.json · scenes/ · assets/")]
+  Tools --> Validate["Validation<br/>packages/core · schema · motion"]
+  Kits[("brand-kits/registry.json")] --> Presets["Presets and themes<br/>packages/presets"]
+  Presets --> Renderer
+  Project --> Renderer["Browser renderer<br/>packages/renderer + motion"]
+  Renderer --> Stage["Studio stage<br/>and thumbnails"]
+  Renderer --> Export["Playwright capture →<br/>FFmpeg H.264 clips"]
+  Export --> Assembly["Assembly<br/>final.mp4 · contact sheet"]
+```
+
+## Packages
+
+| Package | Responsibility |
+| --- | --- |
+| `core` | Project loading, validation, fingerprints and media-tool discovery. |
+| `schema` | Zod schemas for screen scenes and migration of older scene formats. |
+| `motion` | Frame evaluation: camera paths, text, backgrounds, layouts, artwork layers, spatial stage, WebGL looks. |
+| `composition` | Layered components with timing, layout and locks. |
+| `animation-plugins` | Adapters for Anime.js, Motion, Three.js and React Three Fiber, bundled locally. |
+| `presets` | Recipes, templates, themes, Oxygen themes and the brand kit registry. |
+| `renderer` | The shared browser scene renderer, render server, source-frame decoder and export pipeline. |
+| `assembly` | Joins clips with transitions and makes contact sheets. |
+| `tools` | The tool registry used by every client. |
+| `director` | Briefs, decisions, knowledge references and review records. |
+| `agents` | Adapters that run agent CLIs headless and normalize their output. |
+| `mcp` | The stdio MCP server and client setup. |
+| `preview-server` | The Studio's dev and production servers, session security and live events. |
+| `plugins` | The data-only template pack SDK. |
+| `cli` | `pnpm run …` commands. |
+
+## Design rules
+
+- **One write path.** Only tools change projects. They validate first and write nothing when the result is invalid.
+- **One frame path.** Preview, thumbnails and export call the same browser renderer with an explicit frame.
+- **Deterministic frames.** Scenes may not use wall-clock time, timers or unseeded randomness.
+- **Source assets are read-only.** Trims, holds and crops are data; decoded frames are cached separately.
+- **No baked-in brand.** Logos, colors, fonts and bookends come from brand kits.
+- **Silent output.** Audio is rejected at validation and stripped at export.

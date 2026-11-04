@@ -1,0 +1,4 @@
+interface:
+  display_name: "Three.js Video"
+  short_description: "Author deterministic Three.js and React Three Fiber shots"
+  default_prompt: "Use $three-video to author a deterministic 3D shot for this project."

@@ -1,0 +1,12 @@
+{
+  "id": "feature-list",
+  "preset": "feature-list",
+  "durationFrames": 132,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "Follow the work",
+    "title": "Designed for a clear next step.",
+    "items": ["Understand the context", "Focus the decision", "Keep people in control"]
+  },
+  "transition": { "type": "crossfade", "frames": 12 }
+}

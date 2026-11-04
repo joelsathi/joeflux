@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animation Authoring"
+  short_description: "Write deterministic, readable motion for silent videos"
+  default_prompt: "Use $animation-authoring to implement and review the motion for this shot."

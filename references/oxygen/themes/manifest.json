@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/wso2/oxygen-ui",
+  "commit": "c5bd93c5ec810c4759f8e04e66dd6e1f38485fec",
+  "files": {
+    "AcrylicBaseTheme.ts": "0b1c3628ae2de73d7eb1f23f8ff558f25912b9859a51480754b1d9e19b09ffbe",
+    "AcrylicOrangeTheme.ts": "da9a20d66167df036befd24e1a3fdec7ac5a0a22ef4d90ff11c1b10f32895b40",
+    "AcrylicPurpleTheme.ts": "a08ba083bb00f6052f3abe3ff5323c699c97ca2ad7f9d79c38962fc662426c50",
+    "PaleBaseTheme.ts": "fd19b84c3721369810e9aacf12daa6336d8f39f514593dba8d1f10091133c421",
+    "PaleGray.ts": "3a75ca974c9dd3cc2e0e1a281cdc183c3240580683cf8adcc0b2f44e014765dc",
+    "PaleIndigo.ts": "f6678326b7eae9bb920e8cf24a392ddb5f064b50fd89536adea6ebcd97abe2be",
+    "WSO2Theme.ts": "63645cad2c5940ca314949ec687873b2b59973791013073b738ef23057f3d216"
+  }
+}

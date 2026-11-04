@@ -1,0 +1,13 @@
+{
+  "plugin": "animejs",
+  "durationFrames": 120,
+  "pluginOptions": {
+    "quality": 1,
+    "color": "#74e7cd"
+  },
+  "params": {
+    "title": "Ideas in motion",
+    "subtitle": "Open-source tools. Frame-perfect animation."
+  },
+  "id": "animejs"
+}

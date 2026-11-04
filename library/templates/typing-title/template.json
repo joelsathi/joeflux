@@ -1,0 +1,6 @@
+{
+  "id": "typing-title", "label": "Typing title", "category": "Titles", "description": "A typed headline makes a precise, modern opener.",
+  "scene": { "preset": "text-template", "durationFrames": 96, "params": { "eyebrow": "{{eyebrow}}", "title": "{{title}}", "subtitle": "{{subtitle}}" }, "textAnimation": { "template": "typing" } },
+  "slots": [{ "id": "eyebrow", "type": "text", "maxLength": 28, "default": "NOW" }, { "id": "title", "type": "text", "maxLength": 72, "default": "Build with clarity" }, { "id": "subtitle", "type": "text", "maxLength": 110, "default": "" }],
+  "controls": { "durations": { "short": 3, "medium": 4, "long": 6 } }
+}

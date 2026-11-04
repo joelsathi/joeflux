@@ -1,0 +1,38 @@
+{
+  "id": "focus",
+  "preset": "recorded-showcase",
+  "durationFrames": 144,
+  "theme": "navy-dark",
+  "composition": "full",
+  "params": {
+    "asset": "activity"
+  },
+  "playback": {
+    "sourceFps": 30,
+    "startSeconds": 0,
+    "endSeconds": 5.966666666666667,
+    "segments": [
+      {
+        "outputStart": 0,
+        "outputEnd": 48,
+        "rate": 1,
+        "endRate": 2
+      }
+    ],
+    "holds": [
+      {
+        "outputStart": 48,
+        "outputEnd": 95
+      }
+    ]
+  },
+  "zoom": {
+    "startFrame": 0,
+    "endFrame": 143,
+    "entryFrames": 32,
+    "exitFrames": 32,
+    "scale": 1.8,
+    "focusX": 0.82,
+    "focusY": 0.75
+  }
+}

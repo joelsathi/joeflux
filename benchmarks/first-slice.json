@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "neutral-first-slice-v1",
+  "description": "Two original illustrative briefs across three output formats. Product artwork is a specimen, not evidence of actual product performance.",
+  "briefs": [
+    { "id": "product-proof", "audience": "A product evaluator", "message": "A useful change, made visible", "purpose": "Explain a result with visible evidence and a next step", "evidence": "Original illustrative interface; production proof must replace it", "durationFrames": 144 },
+    { "id": "brand-reveal", "audience": "A first-time visitor", "message": "An original brand introduction", "purpose": "Establish a name and a clear next step", "evidence": "Original typography and geometric artwork", "durationFrames": 120 }
+  ],
+  "formats": [
+    { "id": "landscape", "ratio": "16:9", "project": "projects/neutral-landscape", "previewWidth": 640 },
+    { "id": "square", "ratio": "1:1", "project": "projects/neutral-square", "previewWidth": 480 },
+    { "id": "portrait", "ratio": "9:16", "project": "projects/neutral-portrait", "previewWidth": 360 }
+  ],
+  "humanMetrics": ["timeToAcceptedRoughCutMinutes", "manualCorrections", "templateAuthoringMinutes", "viewerComprehension"],
+  "approval": "Pending human normal-speed review; technical success is not creative approval."
+}

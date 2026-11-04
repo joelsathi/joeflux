@@ -1,0 +1,13 @@
+{
+  "plugin": "react-three",
+  "durationFrames": 120,
+  "pluginOptions": {
+    "quality": 1,
+    "color": "#9faaff"
+  },
+  "params": {
+    "title": "Build in dimensions",
+    "subtitle": "Open-source tools. Frame-perfect animation."
+  },
+  "id": "react-three"
+}

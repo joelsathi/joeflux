@@ -1,0 +1,93 @@
+---
+title: brand.json reference
+description: Every brand kit field, its default and how it is validated.
+---
+
+# brand.json reference
+
+`brand-kits/<id>/brand.json` is validated by `pnpm run brand -- sync`. Unknown fields are rejected so typos surface immediately. File paths are relative to the kit folder and cannot leave it.
+
+## Top level
+
+| Field | Type | Default | Notes |
+| --- | --- | --- | --- |
+| `id` | string | required | Lowercase letters, digits and single hyphens. Must match the folder name. |
+| `name` | string | required | Shown in the Studio and used as the logo's alt text. |
+| `logos.onDark` | image path | none | Used when the shot's theme mode is `dark`. |
+| `logos.onLight` | image path | none | Used when the shot's theme mode is `light`. Either logo stands in for the other when only one exists. |
+| `logoPlacement.corner` | `top-left` · `top-right` · `bottom-left` · `bottom-right` | `top-left` | |
+| `logoPlacement.width` | number, 24–960 | `240` | Width in 1920-wide design pixels; it scales with the output size. |
+| `logoPlacement.margin` | `[x, y]` | `[96, 64]` | Distance from the corner, in design pixels. |
+| `fonts` | array | `[]` | See below. |
+| `themes` | array | `[]` | See below. |
+| `backgrounds` | array | `[]` | See below. |
+| `bookends` | array | `[]` | See below. |
+| `guidelines` | `.md` path | none | Returned by `brand_kit_get` for the director. |
+
+## fonts[]
+
+| Field | Type | Default |
+| --- | --- | --- |
+| `family` | string | required. Reference it from a theme's `font` stack. |
+| `file` | `.woff2` · `.woff` · `.ttf` · `.otf` | required |
+| `weight` | CSS weight or range, such as `"700"` or `"100 900"` | `"400"` |
+| `style` | `normal` · `italic` | `normal` |
+
+A font loads only when the active theme's `font` stack names its family, and it finishes loading before text is measured.
+
+## themes[]
+
+| Field | Type | Default |
+| --- | --- | --- |
+| `id` | slug | required. The theme id becomes `<kit>-<id>`. |
+| `label` | string | `"<name> · <id>"` |
+| `mode` | `light` · `dark` | required. Chooses the logo. |
+| `background` | hex color | required |
+| `backgroundEnd` | hex color | `background` (no gradient) |
+| `surface` | hex color | `background` |
+| `text` | hex color | required |
+| `muted` | hex color | `text` |
+| `accent` | hex color | required |
+| `border` | hex color | `muted` |
+| `particle` | hex color | `accent` |
+| `font` | CSS font stack | `"Harness Inter", system-ui, sans-serif` |
+
+Colors are six-digit hex, such as `#8B7CFF`.
+
+## backgrounds[]
+
+| Field | Type | Default |
+| --- | --- | --- |
+| `id` | slug | required. Referenced as `<kit>/<id>`; its paired theme is `background-<kit>-<id>`. |
+| `label` | string | required |
+| `file` | `.svg` · `.png` · `.webp` · `.jpg` · `.jpeg` | required |
+| `mode` | `light` · `dark` | required |
+| `colors` | 1–4 hex colors | required. Used for the paired theme and thumbnails. |
+| `text`, `accent` | hex color | required |
+| `muted` | hex color | `text` |
+| `safeArea` | `[x, y, width, height]`, 0–1 | `[0.1, 0.1, 0.8, 0.8]` |
+
+## bookends[]
+
+| Field | Type | Default |
+| --- | --- | --- |
+| `id` | slug | required |
+| `role` | `intro` · `outro` | required |
+| `label` | string | `id` |
+| `file` | `.mp4` | required |
+| `seconds` | number, up to 30 | required. Sets the shot length. |
+
+## Validation messages
+
+| Message | Fix |
+| --- | --- |
+| `id "x" must match its folder name` | Rename the folder or the id. |
+| `missing file …` | Add the file or correct the path. |
+| `… must be a relative path inside the kit` | Remove `..` or absolute paths. |
+| `… use a six-digit hex color` | Write colors as `#RRGGBB`. |
+| `duplicate theme id "…"` | Give each theme, background and bookend a unique id. |
+| `Unknown brand kit "x"` (from validate) | Run `pnpm run brand -- sync`, or fix the project's `brand`. |
+
+## The example kit
+
+`brand-kits/example` is a complete, original kit: two logos, two themes, two SVG backgrounds, intro and outro clips rendered with JoeFlux itself, and guidelines. Copy it as a starting point.

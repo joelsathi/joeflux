@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "name": "Introduction and transition gallery",
+  "theme": "light-blue",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "overview": "assets/overview.mp4",
+    "activity": "assets/activity.mp4"
+  },
+  "scenes": [
+    {
+      "id": "chapter-opener-light",
+      "file": "scenes/chapter-opener-light.json"
+    },
+    {
+      "id": "product-reveal-light",
+      "file": "scenes/product-reveal-light.json"
+    },
+    {
+      "id": "problem-to-product-light",
+      "file": "scenes/problem-to-product-light.json"
+    },
+    {
+      "id": "screen-handoff-light",
+      "file": "scenes/screen-handoff-light.json"
+    },
+    {
+      "id": "side-slide-light",
+      "file": "scenes/side-slide-light.json"
+    },
+    {
+      "id": "accent-mask-light",
+      "file": "scenes/accent-mask-light.json"
+    },
+    {
+      "id": "chapter-opener-dark",
+      "file": "scenes/chapter-opener-dark.json"
+    },
+    {
+      "id": "product-reveal-dark",
+      "file": "scenes/product-reveal-dark.json"
+    },
+    {
+      "id": "problem-to-product-dark",
+      "file": "scenes/problem-to-product-dark.json"
+    },
+    {
+      "id": "screen-handoff-dark",
+      "file": "scenes/screen-handoff-dark.json"
+    },
+    {
+      "id": "side-slide-dark",
+      "file": "scenes/side-slide-dark.json"
+    },
+    {
+      "id": "accent-mask-dark",
+      "file": "scenes/accent-mask-dark.json"
+    }
+  ]
+}

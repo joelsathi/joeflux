@@ -1,0 +1,6 @@
+{
+  "id": "chapter-opener", "label": "Chapter opener", "category": "Titles", "description": "A generous title introduces the next section.",
+  "scene": { "preset": "chapter-opener", "durationFrames": 96, "params": { "eyebrow": "{{eyebrow}}", "title": "{{title}}", "subtitle": "{{subtitle}}" } },
+  "slots": [{ "id": "eyebrow", "type": "text", "maxLength": 28, "default": "CHAPTER ONE" }, { "id": "title", "type": "text", "maxLength": 68, "default": "A new perspective" }, { "id": "subtitle", "type": "text", "maxLength": 100, "default": "" }],
+  "controls": { "durations": { "short": 3, "medium": 4, "long": 6 } }
+}

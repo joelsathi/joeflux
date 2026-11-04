@@ -1,0 +1,117 @@
+---
+title: Token efficiency
+description: What the AI director reads on each turn, measured, and how the design keeps it small.
+---
+
+import budget from '@site/src/data/context-budget.json';
+
+# Token efficiency
+
+Every message to the director costs tokens: the instructions and tool definitions it always receives, plus whatever its tool calls return. JoeFlux keeps the fixed part stable and small, and makes everything else something the agent asks for only when it needs it.
+
+<Stats items={[
+  { value: (budget.fixed.systemPrompt + budget.fixed.mcpInstructions).toLocaleString(), label: 'tokens of instructions per run' },
+  { value: budget.fixed.toolCount, label: 'typed tools, the only ones exposed' },
+  { value: `${Math.round((1 - budget.skills.catalog / budget.skills.everything) * 100)}%`, label: 'of skill text left unloaded until needed' },
+  { value: `${Math.round((1 - budget.results.compactProject / budget.results.prettyProject) * 100)}%`, label: 'smaller tool results with compact JSON' },
+]} />
+
+The figures on this page are measured by `node scripts/measure-agent-context.mjs`. {budget.method}
+
+## What every turn carries
+
+<Bars items={[
+  { label: 'All tool definitions', value: budget.fixed.toolDefinitions },
+  { label: 'Tools listed to the director', value: budget.fixed.directorTools },
+  { label: 'Tools listed to Claude Code (core)', value: budget.fixed.coreTools },
+  { label: 'MCP server instructions', value: budget.fixed.mcpInstructions },
+  { label: 'Appended system prompt', value: budget.fixed.systemPrompt },
+]} unit=" tok" />
+
+Tool definitions are the largest fixed cost. Advertised schemas leave out what server-side validation already enforces (`$schema`, `additionalProperties: false`, `minLength: 1`), and tools are listed in groups: the server lists `core` plus the groups named by `--toolsets` or `JOEFLUX_TOOLSETS`. The committed `.mcp.json` lists only `core` to Claude Code; the director lists `core,screen,brief,review`, the groups its system prompt relies on. `toolset_enable` adds a group, returns its definitions and notifies clients that refresh their tool list. Clients that don't, such as headless Claude Code, reach any tool through `toolset_call`. The groups are defined in `packages/tools/src/groups.js`.
+
+The listed definitions are identical on every turn and every run, which lets the agent CLI reuse them through the provider's prompt cache, and sessions are resumed rather than restarted, so earlier turns are not resent as new input. The largest definitions are the ones with rich schemas:
+
+<Bars items={budget.largestTools} unit=" tok" />
+
+## How the variable part stays small
+
+### Only JoeFlux tools are loaded
+
+Claude Code runs with `--strict-mcp-config` and `--allowedTools mcp__joeflux__*`. Other MCP servers and their tool definitions configured on your machine are not loaded for a director run.
+
+### Skills load progressively
+
+<Bars items={[
+  { label: 'All skill files', value: budget.skills.everything },
+  { label: 'Largest single skill', value: budget.skills.largestSkill },
+  { label: 'skill_list catalog', value: budget.skills.catalog },
+]} unit=" tok" />
+
+The agent sees the one-line skill catalog, loads one `SKILL.md` with `skill_get` when the task calls for it, and fetches a reference file only when the skill links to it. None of the {budget.skills.files} skill files are in the system prompt.
+
+### Edits are merge patches
+
+<Bars items={[
+  { label: 'Rewriting the largest scene', value: budget.edits.fullScene },
+  { label: 'scene_update merge patch', value: budget.edits.mergePatch },
+]} unit=" tok" />
+
+`scene_update` takes a JSON merge patch, and the camera, screen and template tools take only the fields they change. The agent never has to echo a whole scene back. Fingerprints returned by `project_get` let a write be checked for conflicts without reading the file again.
+
+### Results are compact JSON
+
+<Bars items={[
+  { label: 'project_get, indented', value: budget.results.prettyProject },
+  { label: 'project_get, compact', value: budget.results.compactProject },
+]} unit=" tok" />
+
+MCP tool results are serialized without indentation. Images are attached only by the tools whose job is to show frames.
+
+### Catalogs return summaries first
+
+<Bars items={[
+  { label: 'template_list, with gallery previews', value: budget.catalogs.templatePreview },
+  { label: 'template_list, summary', value: budget.catalogs.templateList },
+  { label: 'template_list, one category', value: budget.catalogs.templateCategory },
+  { label: 'catalog, with screen-scene schema', value: budget.catalogs.catalogWithSchema },
+  { label: 'catalog, default', value: budget.catalogs.catalog },
+]} unit=" tok" />
+
+`template_list` returns ids, slots and controls; the built scenes the Studio gallery previews are added only with `preview: true`, and `category` narrows the list. `catalog` adds the screen-scene JSON Schema only when asked with `include: ["screenScene"]`. `tests/context-budget.test.js` fails when a default result or the tool definitions grow past their budget.
+
+### Frames are sized for judging, not for display
+
+<Bars items={[
+  { label: 'One full-resolution frame', value: budget.images.fullResolution },
+  { label: 'quality_review (3 frames at 640 px)', value: budget.images.qualityReview },
+  { label: 'render_frame (960 px)', value: budget.images.renderFrame },
+]} unit=" tok" />
+
+`render_frame` defaults to 960 pixels wide and `quality_review` returns three 640-pixel frames (entrance, hold, exit). Three review frames cost about half of one full-resolution frame. To check small text, `render_frame` takes a `region` (fractions of the frame) and renders just that crop at native resolution instead of a larger whole frame.
+
+### Unchanged scenes are not reviewed twice
+
+`review_record` stores each reviewed shot's render fingerprint, and `review_get` reports `changedShots` edited since. `quality_review` on a scene whose fingerprint matches a recorded review, or its own last run, returns the heuristic findings with `unchanged: true` and no frames; `force: true` renders them again.
+
+### Brand and knowledge are on demand
+
+<Bars items={[
+  { label: 'brand_kit_get (one kit, with guidelines)', value: budget.brand.detail },
+  { label: 'brand_kit_list (all kits)', value: budget.brand.list },
+]} unit=" tok" />
+
+The system prompt only says to read the project's brand kit once. Knowledge references are searched with `knowledge_search` by communication purpose, not listed up front.
+
+### Decisions are saved, not re-derived
+
+The brief, its decisions and their provenance live in `project.json`. Each turn starts with `brief_get`, which returns only the questions that are still open, so the director doesn't spend turns re-asking settled questions. The Studio adds a single sentence of context: the selected shot, its type and length.
+
+## Guidelines when extending the director
+
+- Prefer a new narrow tool over a broad one that returns everything.
+- Keep tool descriptions to one or two sentences; put the detail in the schema's field descriptions.
+- Return ids, fingerprints and summaries; let the agent fetch detail with a follow-up call.
+- Put long guidance in a skill reference, not the system prompt.
+- Give list and catalog tools a summary by default and an opt-in for detail; only a UI that renders the detail should ask for it.
+- Re-run `node scripts/measure-agent-context.mjs` and compare before and after. Raise a budget in `tests/context-budget.test.js` only deliberately.

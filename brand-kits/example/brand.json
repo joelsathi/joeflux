@@ -1,0 +1,20 @@
+{
+  "id": "example",
+  "name": "Example Studio",
+  "logos": { "onDark": "logos/logo-on-dark.svg", "onLight": "logos/logo-on-light.svg" },
+  "logoPlacement": { "corner": "top-left", "width": 300, "margin": [96, 64] },
+  "fonts": [],
+  "themes": [
+    { "id": "dark", "label": "Example Studio · dark", "mode": "dark", "background": "#0B0D1F", "backgroundEnd": "#16123A", "surface": "#1A1C38", "text": "#FFFFFF", "muted": "#C9C6F5", "accent": "#8B7CFF", "border": "#3A3766", "particle": "#3DD6C6", "font": "\"Harness Inter\", system-ui, sans-serif" },
+    { "id": "light", "label": "Example Studio · light", "mode": "light", "background": "#FBFAFF", "backgroundEnd": "#EEF0FB", "surface": "#FFFFFF", "text": "#14162B", "muted": "#545779", "accent": "#6E5BFF", "border": "#D9DAF0", "particle": "#6E5BFF", "font": "\"Harness Inter\", system-ui, sans-serif" }
+  ],
+  "backgrounds": [
+    { "id": "aurora", "label": "Aurora", "file": "backgrounds/aurora.svg", "mode": "dark", "colors": ["#0B0D1F", "#16123A"], "text": "#FFFFFF", "muted": "#C9C6F5", "accent": "#8B7CFF", "safeArea": [0.1, 0.12, 0.8, 0.76] },
+    { "id": "paper", "label": "Paper", "file": "backgrounds/paper.svg", "mode": "light", "colors": ["#FBFAFF", "#EEF0FB"], "text": "#14162B", "muted": "#545779", "accent": "#6E5BFF", "safeArea": [0.1, 0.12, 0.8, 0.76] }
+  ],
+  "bookends": [
+    { "id": "intro", "role": "intro", "label": "Intro", "file": "bookends/intro.mp4", "seconds": 3 },
+    { "id": "outro", "role": "outro", "label": "Outro", "file": "bookends/outro.mp4", "seconds": 3 }
+  ],
+  "guidelines": "guidelines.md"
+}

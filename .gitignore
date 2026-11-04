@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+/node_modules
+
+# Build output
+apps/preview/dist/
+apps/studio/dist/
+
+# Runtime caches, venvs and scratch logs
+.runtime/
+
+# Generated render output — recreate with render / assemble / review
+projects/*/exports/
+
+# Internal review projects — recreate with scripts/create-refinement-review.js
+projects/connection-review/
+projects/oxygen-review/
+
+# Bulky FFmpeg test-pattern source; not a real sample
+projects/demo/assets/demo-recording.mp4
+
+# Third-party Resolve MCP source — downloaded on demand by `pnpm run setup -- resolve`
+integrations/resolve/vendor/
+
+# .mcp.json is committed: its joeflux entry opens any project through project_open.
+# `setup resolve --client claude` adds a machine-local davinci-resolve entry; do not commit that entry.
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Agent worktrees
+.claude/worktrees/
+
+# Desktop runtime downloads and distributable applications
+.desktop/
+out/
+
+# Generated from pinned open-source animation packages
+packages/animation-plugins/dist/
+
+# Documentation site build output
+website/build/
+website/.docusaurus/

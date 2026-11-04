@@ -1,0 +1,22 @@
+{
+  "id": "title-sequence",
+  "preset": "text-template",
+  "durationFrames": 120,
+  "theme": "oxygen-wso2-dark",
+  "background": {
+    "style": "soft-light",
+    "intensity": 0.65,
+    "speed": 1
+  },
+  "textAnimation": {
+    "template": "title-sequence",
+    "entryFrames": 30,
+    "holdFrames": 65,
+    "exitFrames": 24
+  },
+  "params": {
+    "title": "A title with room to breathe.",
+    "eyebrow": "05 · Title then subtitle",
+    "subtitle": "A quiet background. A readable hold. A clean exit."
+  }
+}

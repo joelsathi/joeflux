@@ -1,0 +1,30 @@
+name: Bug report
+description: Report reproducible editing, preview or export behavior.
+title: "[Bug]: "
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include commands or UI actions and a minimal scene/manifest. Redact secrets and private recordings.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed behavior
+      description: Include time/frame, output format, cancellation/seek direction and error diagnostics where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and versions
+      description: Harness revision, OS, Node/pnpm, Chromium/Electron, FFmpeg and relevant pack versions/digests.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Verification evidence
+      description: Attach focused logs or shareable specimens. State which frames/playback you actually inspected and what remains unverified.

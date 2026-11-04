@@ -1,0 +1,11 @@
+{
+  "id": "ambient-opening",
+  "preset": "oxygen-particles",
+  "durationFrames": 120,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "A visual system for product stories",
+    "title": "A clear idea, in motion."
+  },
+  "transition": { "type": "crossfade", "frames": 12 }
+}

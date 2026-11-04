@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "name": "Open-source animation gallery",
+  "theme": "navy-dark",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "audio": false
+  },
+  "assets": {},
+  "scenes": [
+    {
+      "id": "animejs",
+      "file": "scenes/animejs.json"
+    },
+    {
+      "id": "threejs",
+      "file": "scenes/threejs.json"
+    },
+    {
+      "id": "react-three",
+      "file": "scenes/react-three.json"
+    },
+    {
+      "id": "motion",
+      "file": "scenes/motion.json"
+    }
+  ]
+}

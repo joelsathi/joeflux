@@ -1,0 +1,36 @@
+{
+  "enabledMcpjsonServers": ["joeflux"],
+  "permissions": {
+    "allow": [
+      "mcp__joeflux",
+      "Bash(pnpm test)",
+      "Bash(pnpm test *)",
+      "Bash(pnpm run test:fast)",
+      "Bash(pnpm run test:fast *)",
+      "Bash(pnpm run validate *)",
+      "Bash(pnpm run render *)",
+      "Bash(pnpm run review *)",
+      "Bash(pnpm run tool *)",
+      "Bash(pnpm run doctor)",
+      "Bash(pnpm run brand -- sync)",
+      "Bash(pnpm run brand -- list)",
+      "Bash(pnpm run skills:sync)",
+      "Bash(pnpm run skills:check)",
+      "Bash(ffprobe *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/agent-post-edit.mjs\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+---
+slug: /
+sidebar_position: 1
+title: Overview
+description: What JoeFlux is and how its parts fit together.
+---
+
+# JoeFlux
+
+JoeFlux is a local studio for **silent product demos and explainer videos**. A project is an ordinary folder of JSON scenes and media. You can edit it in the Studio, ask an AI director to change it, or script it from the command line. All three paths use the same validated and undoable tools.
+
+<Screenshot src="/img/screens/studio.png" alt="Studio overview" caption="The Studio: director chat on the left, the live stage and shot strip in the centre, the inspector on the right." />
+
+## What you can make
+
+| Make | With |
+| --- | --- |
+| **Product walkthroughs** | Screen recordings, focus areas, camera moves, browser frames and captions. |
+| **Explainers and launches** | Titles, brand reveals, product proof, terminal walkthroughs and calls to action. |
+| **Tighter demos** | Source trims, skipped waits and held results, without changing the original recording. |
+| **Branded output** | Drop-in brand kits with logos, fonts, themes, backgrounds and intro/outro clips. |
+| **Every placement** | Landscape 16:9, square 1:1 and portrait 9:16 composition layouts. |
+| **A reviewable cut** | Full-film playback, shot and transition previews, timecoded findings and contact sheets. |
+
+## Where to go next
+
+<Cards items={[
+  { title: 'Install and run', text: 'Set up Node, pnpm and FFmpeg, then open a sample project.', to: '/docs/getting-started/installation' },
+  { title: 'Make your first video', text: 'Create a project, add shots, render and assemble.', to: '/docs/getting-started/first-video' },
+  { title: 'Plug in your brand', text: 'Turn logos, colors and backgrounds into a reusable brand kit.', to: '/docs/brand-kits/overview' },
+  { title: 'Use After Effects work', text: 'Bring Lottie exports and rendered clips into a project.', to: '/docs/motion/after-effects' },
+  { title: 'Understand the architecture', text: 'How scenes, tools, renderers and agents connect.', to: '/docs/architecture/overview' },
+  { title: 'Agent token budget', text: 'How the director stays fast and inexpensive to run.', to: '/docs/architecture/token-efficiency' },
+]} />
+
+## Principles
+
+- **Silent video only.** Projects require `output.audio: false`, exports omit audio and review confirms it.
+- **Source assets are never modified.** Trims, holds and crops are scene settings. Generated files go to `exports/` and `.runtime/`.
+- **Frame-deterministic.** Every scene evaluates from an explicit frame number, so preview and export match.
+- **Agents are optional.** You can edit and render without an AI account. Connect one when you want director chat.

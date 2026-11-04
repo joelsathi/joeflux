@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Steps 3–4 · Background and text motion",
+  "theme": "light-blue",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {},
+  "scenes": [
+    {
+      "id": "masked-lines",
+      "file": "scenes/masked-lines.json"
+    },
+    {
+      "id": "word-stagger",
+      "file": "scenes/word-stagger.json"
+    },
+    {
+      "id": "blur-reveal",
+      "file": "scenes/blur-reveal.json"
+    },
+    {
+      "id": "keyword-highlight",
+      "file": "scenes/keyword-highlight.json"
+    },
+    {
+      "id": "title-sequence",
+      "file": "scenes/title-sequence.json"
+    },
+    {
+      "id": "typing",
+      "file": "scenes/typing.json"
+    }
+  ]
+}

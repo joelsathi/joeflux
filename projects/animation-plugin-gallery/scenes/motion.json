@@ -1,0 +1,13 @@
+{
+  "plugin": "motion",
+  "durationFrames": 120,
+  "pluginOptions": {
+    "quality": 1,
+    "color": "#74e7cd"
+  },
+  "params": {
+    "title": "From idea to frame",
+    "subtitle": "Open-source tools. Frame-perfect animation."
+  },
+  "id": "motion"
+}

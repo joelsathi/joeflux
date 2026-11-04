@@ -1,0 +1,52 @@
+{
+  "id": "focus-hold",
+  "preset": "focus-transition",
+  "durationFrames": 120,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "Reading hold",
+    "title": "Let the detail land.",
+    "asset": "productScreen"
+  },
+  "camera": {
+    "start": {
+      "x": 0,
+      "y": 0,
+      "rotateY": 0,
+      "scale": 1,
+      "focusX": 0.56,
+      "focusY": 0.55
+    },
+    "end": {
+      "x": 0,
+      "y": -20,
+      "rotateY": 0,
+      "scale": 1,
+      "focusX": 0.56,
+      "focusY": 0.55
+    },
+    "easing": "easeInOut"
+  },
+  "playback": {
+    "sourceFps": 30,
+    "startFrame": 0,
+    "endFrame": 120,
+    "segments": [],
+    "holds": [
+      {
+        "outputStart": 0,
+        "outputEnd": 119,
+        "sourceFrame": 96
+      }
+    ]
+  },
+  "zoom": {
+    "startFrame": 0,
+    "endFrame": 119,
+    "entryFrames": 24,
+    "exitFrames": 24,
+    "scale": 1.65,
+    "focusX": 0.7,
+    "focusY": 0.4
+  }
+}

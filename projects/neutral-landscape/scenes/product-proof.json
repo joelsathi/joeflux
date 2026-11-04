@@ -1,0 +1,101 @@
+{
+  "kind": "composition",
+  "compositionVersion": 1,
+  "compositionFps": 24,
+  "durationFrames": 144,
+  "background": {
+    "style": "static",
+    "color": "#122238"
+  },
+  "components": [
+    {
+      "id": "accent",
+      "component": "harness/shape",
+      "version": "1.0.0",
+      "inputs": {
+        "color": "#66dcc8",
+        "treatment": "restrained",
+        "shape": "pill",
+        "scale": 0.8
+      },
+      "layout": {
+        "anchor": "center"
+      },
+      "timing": {
+        "startFrame": 0,
+        "entranceFrames": 12,
+        "holdFrames": 124,
+        "exitFrames": 8
+      },
+      "locks": {},
+      "seed": 1
+    },
+    {
+      "id": "headline",
+      "component": "harness/title",
+      "version": "1.0.0",
+      "inputs": {
+        "title": "A useful change, made visible",
+        "subtitle": "Original sample interface. Replace it with real evidence.",
+        "color": "#66dcc8",
+        "treatment": "restrained"
+      },
+      "layout": {
+        "anchor": "top"
+      },
+      "timing": {
+        "startFrame": 0,
+        "entranceFrames": 12,
+        "holdFrames": 124,
+        "exitFrames": 8
+      },
+      "locks": {},
+      "seed": 1
+    },
+    {
+      "id": "evidence",
+      "component": "harness/proof",
+      "version": "1.0.0",
+      "inputs": {
+        "fit": "contain",
+        "radius": 20,
+        "color": "#66dcc8",
+        "asset": "proof"
+      },
+      "layout": {
+        "anchor": "center"
+      },
+      "timing": {
+        "startFrame": 0,
+        "entranceFrames": 12,
+        "holdFrames": 124,
+        "exitFrames": 8
+      },
+      "locks": {},
+      "seed": 1
+    },
+    {
+      "id": "action",
+      "component": "harness/cta",
+      "version": "1.0.0",
+      "inputs": {
+        "title": "Explore the next step",
+        "subtitle": "",
+        "color": "#66dcc8",
+        "treatment": "restrained"
+      },
+      "layout": {
+        "anchor": "bottom"
+      },
+      "timing": {
+        "startFrame": 0,
+        "entranceFrames": 12,
+        "holdFrames": 124,
+        "exitFrames": 8
+      },
+      "locks": {},
+      "seed": 1
+    }
+  ],
+  "id": "product-proof"
+}

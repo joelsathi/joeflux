@@ -1,0 +1,39 @@
+{
+  "id": "plugin-threejs",
+  "label": "Three.js product sculpture",
+  "category": "3D",
+  "description": "A lit metallic sculpture with a composed reveal.",
+  "scene": {
+    "plugin": "threejs",
+    "durationFrames": 120,
+    "pluginOptions": {
+      "quality": 1,
+      "color": "#74e7cd"
+    },
+    "params": {
+      "title": "{{title}}",
+      "subtitle": "{{subtitle}}"
+    }
+  },
+  "slots": [
+    {
+      "id": "title",
+      "type": "text",
+      "maxLength": 64,
+      "default": "Give ideas dimension"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "maxLength": 100,
+      "default": "Open-source tools. Frame-perfect animation."
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 5,
+      "long": 7
+    }
+  }
+}

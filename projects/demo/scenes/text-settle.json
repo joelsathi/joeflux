@@ -1,0 +1,17 @@
+{
+  "id": "text-settle",
+  "preset": "text-settle",
+  "durationFrames": 132,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "Frame-accurate video",
+    "title": "Say less. Show the important part.",
+    "subtitle": "Every animation is controlled by editable scene data."
+  },
+  "camera": {
+    "start": { "scale": 0.95, "rotateY": -4 },
+    "end": { "scale": 1, "rotateY": 0 },
+    "easing": "easeInOut"
+  },
+  "transition": { "type": "crossfade", "frames": 12 }
+}

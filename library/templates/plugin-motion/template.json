@@ -1,0 +1,39 @@
+{
+  "id": "plugin-motion",
+  "label": "Motion interface reveal",
+  "category": "Motion graphics",
+  "description": "Staggered interface cards with controlled easing.",
+  "scene": {
+    "plugin": "motion",
+    "durationFrames": 120,
+    "pluginOptions": {
+      "quality": 1,
+      "color": "#74e7cd"
+    },
+    "params": {
+      "title": "{{title}}",
+      "subtitle": "{{subtitle}}"
+    }
+  },
+  "slots": [
+    {
+      "id": "title",
+      "type": "text",
+      "maxLength": 64,
+      "default": "From idea to frame"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "maxLength": 100,
+      "default": "Open-source tools. Frame-perfect animation."
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 5,
+      "long": 7
+    }
+  }
+}

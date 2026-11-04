@@ -1,0 +1,15 @@
+{
+  "id": "opening",
+  "preset": "text-settle",
+  "durationFrames": 120,
+  "params": {
+    "eyebrow": "Product story",
+    "title": "A clear idea, in motion.",
+    "subtitle": "Silent, frame-accurate video."
+  },
+  "camera": {
+    "start": { "scale": 0.96, "rotateY": -4 },
+    "end": { "scale": 1, "rotateY": 0 },
+    "easing": "easeInOut"
+  }
+}

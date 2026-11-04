@@ -1,0 +1,6 @@
+{
+  "id": "problem-to-product", "label": "Problem to product", "category": "Story", "description": "Open with the problem, then turn to the product benefit.",
+  "scene": { "preset": "problem-to-product", "durationFrames": 144, "params": { "title": "{{title}}", "benefit": "{{benefit}}", "asset": "{{asset}}" } },
+  "slots": [{ "id": "asset", "type": "asset", "required": true }, { "id": "title", "type": "text", "maxLength": 64, "default": "Complex work takes time" }, { "id": "benefit", "type": "text", "maxLength": 64, "default": "Make every step clearer" }],
+  "controls": { "durations": { "short": 4, "medium": 6, "long": 8 } }
+}

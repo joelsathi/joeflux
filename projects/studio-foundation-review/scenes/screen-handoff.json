@@ -1,0 +1,21 @@
+{
+  "id": "screen-handoff",
+  "preset": "screen-handoff",
+  "connectionStyle": "continuous",
+  "durationFrames": 96,
+  "theme": "oxygen-wso2-dark",
+  "background": {
+    "style": "static"
+  },
+  "params": {
+    "title": "From insight to action",
+    "subtitle": "A smoother way to tell the story.",
+    "outgoingAsset": "overview",
+    "incomingAsset": "activity"
+  },
+  "compositor": {
+    "look": "cinematic",
+    "depthOfField": 0.12,
+    "light": 0.3
+  }
+}

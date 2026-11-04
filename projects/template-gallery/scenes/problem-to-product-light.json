@@ -1,0 +1,20 @@
+{
+  "id": "problem-to-product-light",
+  "preset": "problem-to-product",
+  "theme": "light-blue",
+  "durationFrames": 192,
+  "params": {
+    "asset": "activity",
+    "outgoingAsset": "overview",
+    "incomingAsset": "activity",
+    "eyebrow": "A clear next step",
+    "title": "Bring the picture together.",
+    "benefit": "Focus on what matters.",
+    "subtitle": "Give every idea room to land.",
+    "items": [
+      "Context",
+      "Insight",
+      "Action"
+    ]
+  }
+}

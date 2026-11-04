@@ -1,0 +1,81 @@
+{
+  "name": "joeflux",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.4",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "init": "node packages/cli/src/main.js init",
+    "pretest": "node scripts/create-demo-recording.mjs",
+    "test": "node --test --test-concurrency=1 --test-timeout=30000 tests/**/*.test.js",
+    "test:fast": "node scripts/test-fast.mjs",
+    "validate": "node packages/cli/src/main.js validate",
+    "doctor": "node packages/cli/src/main.js doctor",
+    "preview": "node packages/cli/src/main.js preview",
+    "render": "node packages/cli/src/main.js render",
+    "assemble": "node packages/cli/src/main.js assemble",
+    "review": "node packages/cli/src/main.js review",
+    "setup": "node packages/cli/src/main.js setup",
+    "resolve": "node packages/cli/src/main.js resolve",
+    "tool": "node packages/cli/src/main.js tool",
+    "brand": "node packages/cli/src/main.js brand",
+    "skills:sync": "node scripts/sync-skills.mjs",
+    "skills:check": "node scripts/sync-skills.mjs --check",
+    "docs:install": "pnpm --dir website install --frozen-lockfile",
+    "docs:dev": "pnpm --dir website start",
+    "docs:build": "pnpm --dir website build",
+    "build:studio": "node scripts/build-studio.mjs",
+    "desktop:prepare": "node scripts/prepare-desktop.mjs",
+    "desktop": "pnpm run build:studio && electron .",
+    "desktop:package": "pnpm run build:studio && pnpm run desktop:prepare && electron-forge package",
+    "desktop:make": "pnpm run build:studio && pnpm run desktop:prepare && electron-forge make && node scripts/make-desktop-dmg.mjs",
+    "test:desktop": "node --test --test-concurrency=1 --test-timeout=60000 tests/desktop*.test.js",
+    "desktop:smoke": "node scripts/smoke-desktop.mjs",
+    "build:plugins": "node scripts/build-animation-plugins.mjs",
+    "licenses:check": "node scripts/check-licenses.mjs && node scripts/check-licenses.mjs --dir website",
+    "plugin:check": "node scripts/check-plugin.mjs",
+    "benchmark": "node scripts/benchmark-first-slice.mjs"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "8.0.1",
+    "@electron-forge/maker-zip": "8.0.1",
+    "@ffprobe-installer/ffprobe": "2.1.2",
+    "@vitejs/plugin-react": "^5.1.1",
+    "@wso2/oxygen-ui": "0.14.0",
+    "@wso2/oxygen-ui-icons-react": "0.14.0",
+    "electron": "44.5.1",
+    "esbuild": "0.25.12",
+    "ffmpeg-static": "5.3.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "@playwright/test": "^1.57.0",
+    "@react-three/fiber": "9.8.1",
+    "animejs": "4.5.0",
+    "connect": "3.7.0",
+    "motion": "14.0.0",
+    "three": "0.186.1",
+    "zod": "^4.6.5"
+  },
+  "description": "A local studio for silent product videos",
+  "productName": "JoeFlux",
+  "main": "packages/desktop/main.cjs",
+  "author": "JoeFlux contributors",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild",
+      "ffmpeg-static"
+    ]
+  },
+  "config": {
+    "forge": "./forge.config.cjs"
+  },
+  "license": "MIT"
+}

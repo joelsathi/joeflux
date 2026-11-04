@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "Step 5 · Camera motion review",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "screen": "assets/overview.mp4"
+  },
+  "scenes": [
+    {
+      "id": "focus-zoom",
+      "file": "scenes/focus-zoom.json"
+    },
+    {
+      "id": "detail-pan",
+      "file": "scenes/detail-pan.json"
+    },
+    {
+      "id": "orbit",
+      "file": "scenes/orbit.json"
+    },
+    {
+      "id": "tilt-settle",
+      "file": "scenes/tilt-settle.json"
+    },
+    {
+      "id": "return-full",
+      "file": "scenes/return-full.json"
+    }
+  ],
+  "theme": "navy-dark"
+}

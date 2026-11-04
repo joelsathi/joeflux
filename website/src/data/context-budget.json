@@ -1,0 +1,76 @@
+{
+  "method": "Estimated tokens = characters / 4. Image tokens = width × height / 750. Measured on projects/motion-showcase.",
+  "fixed": {
+    "systemPrompt": 216,
+    "mcpInstructions": 252,
+    "toolCount": 74,
+    "toolDefinitions": 10899,
+    "groupedInstructions": 35,
+    "coreTools": 3411,
+    "directorTools": 9550
+  },
+  "largestTools": [
+    {
+      "label": "review_record",
+      "value": 984
+    },
+    {
+      "label": "screen_set",
+      "value": 737
+    },
+    {
+      "label": "knowledge_reference_set",
+      "value": 495
+    },
+    {
+      "label": "camera_set_shots",
+      "value": 480
+    },
+    {
+      "label": "knowledge_pattern_set",
+      "value": 449
+    },
+    {
+      "label": "brief_decision_set",
+      "value": 339
+    },
+    {
+      "label": "camera_style",
+      "value": 310
+    },
+    {
+      "label": "brief_question_set",
+      "value": 307
+    }
+  ],
+  "skills": {
+    "catalog": 391,
+    "largestSkill": 1043,
+    "everything": 17948,
+    "files": 18
+  },
+  "edits": {
+    "fullScene": 115,
+    "mergePatch": 18
+  },
+  "results": {
+    "prettyProject": 877,
+    "compactProject": 617
+  },
+  "brand": {
+    "list": 72,
+    "detail": 380
+  },
+  "catalogs": {
+    "templateList": 2941,
+    "templateCategory": 319,
+    "templatePreview": 13291,
+    "catalog": 585,
+    "catalogWithSchema": 2621
+  },
+  "images": {
+    "renderFrame": 691,
+    "qualityReview": 921,
+    "fullResolution": 1844
+  }
+}

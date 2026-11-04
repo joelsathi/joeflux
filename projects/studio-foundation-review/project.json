@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Studio foundation review",
+  "theme": "oxygen-wso2-dark",
+  "style": {
+    "themes": [
+      "oxygen-wso2-dark",
+      "oxygen-acrylic-purple-light"
+    ],
+    "pacing": "balanced",
+    "look": "cinematic"
+  },
+  "output": {
+    "width": 960,
+    "height": 540,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "overview": "assets/overview.mp4",
+    "activity": "assets/activity.mp4",
+    "spark": "assets/spark.svg",
+    "orbit": "assets/orbit.json"
+  },
+  "scenes": [
+    {
+      "id": "glass-title",
+      "file": "scenes/glass-title.json"
+    },
+    {
+      "id": "focus-tour",
+      "file": "scenes/focus-tour.json"
+    },
+    {
+      "id": "screen-handoff",
+      "file": "scenes/screen-handoff.json"
+    }
+  ]
+}

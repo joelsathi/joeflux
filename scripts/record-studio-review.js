@@ -1,0 +1,45 @@
+import { mkdtemp, mkdir, rename } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { chromium } from '@playwright/test';
+import { startPreview } from '../packages/preview-server/src/index.js';
+import { browserLaunchOptions } from '../packages/renderer/src/index.js';
+
+const project=path.resolve('projects/studio-foundation-review');
+const output=path.join(project,'exports','studio-walkthrough.webm');
+const directory=await mkdtemp(path.join(tmpdir(),'studio-walkthrough-'));
+const preview=await startPreview(project,0,{agents:{}});
+let browser,context;
+try {
+  browser=await chromium.launch(browserLaunchOptions());
+  context=await browser.newContext({viewport:{width:1600,height:1000},deviceScaleFactor:1,recordVideo:{dir:directory,size:{width:1280,height:800}}});
+  const page=await context.newPage(),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(preview.url);
+  await page.locator('.shot-select').first().waitFor();
+  await page.waitForTimeout(1600);
+  await page.locator('.shot-select').nth(1).click();
+  await page.waitForTimeout(550);
+  await page.getByRole('button',{name:'Play',exact:true}).click();
+  await page.waitForTimeout(1600);
+  await page.getByRole('button',{name:'Pause',exact:true}).click();
+  await page.getByRole('tab',{name:'Look'}).click();
+  await page.waitForTimeout(800);
+  await page.getByRole('button',{name:'Explore three looks'}).click();
+  await page.getByRole('dialog').waitFor();
+  await page.locator('.variation-card').first().waitFor({timeout:30000});
+  await page.waitForTimeout(1300);
+  await page.getByRole('dialog').getByRole('button',{name:'Close'}).click();
+  await page.locator('.panel-body').evaluate(node=>node.scrollTo({top:node.scrollHeight,behavior:'smooth'}));
+  await page.waitForTimeout(1100);
+  await page.getByRole('button',{name:'Add a shot'}).click();
+  await page.getByRole('menuitem',{name:/Browse templates/}).click();
+  await page.getByRole('dialog').waitFor();
+  await page.waitForTimeout(2700);
+  if(errors.length)throw new Error(`Studio page errors: ${errors.join('; ')}`);
+  const video=page.video();
+  await context.close();context=null;
+  await mkdir(path.dirname(output),{recursive:true});
+  await rename(await video.path(),output);
+  console.log(output);
+} finally {await context?.close();await browser?.close();await preview.close();}

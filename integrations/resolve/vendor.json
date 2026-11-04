@@ -1,0 +1,9 @@
+{
+  "davinci-resolve-mcp": {
+    "repository": "https://github.com/samuelgursky/davinci-resolve-mcp.git",
+    "ref": "v2.98.3",
+    "commit": "132e134d3aa25d3d0df6bdf38f051bd29d128211",
+    "license": "MIT",
+    "note": "Downloaded on demand by `pnpm run setup -- resolve`. Not committed; see THIRD_PARTY_NOTICES.md."
+  }
+}

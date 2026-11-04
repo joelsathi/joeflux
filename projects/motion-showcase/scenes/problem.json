@@ -1,0 +1,18 @@
+{
+  "id": "problem",
+  "preset": "problem-to-product",
+  "durationFrames": 192,
+  "theme": "navy-dark",
+  "params": {
+    "asset": "overview",
+    "eyebrow": "Designed for a clear next step",
+    "title": "Too many signals. One decision.",
+    "benefit": "Bring the picture together.",
+    "subtitle": "Understand the context before you act.",
+    "items": [
+      "Connect the context",
+      "See what matters",
+      "Choose the next step"
+    ]
+  }
+}

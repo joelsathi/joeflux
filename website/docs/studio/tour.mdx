@@ -1,0 +1,50 @@
+---
+title: Studio tour
+description: The four areas of the Studio and what each one does.
+---
+
+# Studio tour
+
+Start the Studio with `pnpm run preview -- <project>` and open the printed link. Every control calls the same project tools an agent uses, so each change is validated, saved to disk and undoable with <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Z</kbd>.
+
+<Screenshot src="/img/screens/studio.png" alt="The Studio showing a branded title shot" caption="A project using the example brand kit: the kit logo is placed top-left on every branded shot." />
+
+| Area | What it does |
+| --- | --- |
+| **Top bar** | Project name, shot count, duration and format. **Play film** reviews the whole cut with real transitions. **Export** renders, assembles and makes a contact sheet. |
+| **Director** (left) | The brand kit card, the quick brief and chat with your AI agent. |
+| **Stage** (centre) | A live, frame-accurate preview of the selected shot, with **Play from this shot** and a scrubber. |
+| **Shot strip** (bottom) | Every shot in order. Click to select, drag to reorder, use **…** to duplicate or delete, **+** to add. |
+| **Inspector** (right) | Tabs for the selected shot: Camera, Screen, Text, Look and Art, or Composition and Plugin for those shot types. |
+
+## Screen recordings
+
+Screen shots present a recording on the stage and move a camera over it. Press <kbd>F</kbd> or **Frame areas on stage** to draw focus areas directly on the recording. The camera visits them in order, holds on each and returns to the full view.
+
+<Screenshot src="/img/screens/studio-screen.png" alt="A framed screen recording with camera controls" caption="A floating browser-framed recording with a glow light. The Camera tab lists focus areas, framing, easing, drift and the shot path." />
+
+The **Screen** tab controls presentation: floating or full screen, padding, corner radius, shadow, browser or window chrome and lighting. **Apply to all shots** copies the look to every other screen shot in one undo step.
+
+## Look, themes and backgrounds
+
+The **Look** tab holds the theme grid, the background gallery, background motion, the WebGL compositor and project pacing. Brand kit themes and backgrounds appear here as soon as a kit is installed.
+
+<div className="row">
+  <div className="col col--6"><Screenshot src="/img/screens/inspector-look.png" alt="Theme grid in the inspector" caption="Built-in, Oxygen and brand kit themes." /></div>
+  <div className="col col--6"><Screenshot src="/img/screens/inspector-backgrounds.png" alt="Background gallery in the inspector" caption="Kit backgrounds, filtered by light or dark mode." /></div>
+</div>
+
+**Explore three looks** renders three variations of the shot side by side so you can compare before you commit.
+
+## Templates
+
+Choose **Add a shot → Browse templates**. The browser previews each recipe with your own assets and lets you set copy, duration and theme before adding it.
+
+<Screenshot src="/img/screens/templates.png" alt="The template browser" caption="Template previews use the project's real assets and brand kit." />
+
+## Reviewing the cut
+
+- **Play film** plays every shot with its actual transition overlaps.
+- **Preview transition** in the Look tab renders one boundary exactly as the export joins it.
+- **Timecoded review** in the Director panel records findings for a shot or boundary, separately from taste notes.
+- **Export** runs render, assemble and review. Clips go to `exports/clips/`, the film to `exports/final.mp4`.

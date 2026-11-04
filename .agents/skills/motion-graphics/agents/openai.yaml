@@ -1,0 +1,4 @@
+interface:
+  display_name: "Motion Graphics"
+  short_description: "Design purposeful motion for SaaS and product videos"
+  default_prompt: "Use $motion-graphics to design a clear, polished motion treatment for this silent product video."

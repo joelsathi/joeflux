@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animation Plugins"
+  short_description: "Build reusable Anime.js and Motion video scenes"
+  default_prompt: "Use $animation-plugins to build a reusable animated scene for this project."

@@ -1,0 +1,6 @@
+{
+  "id": "side-slide", "label": "Side slide", "category": "Transitions", "description": "Two recordings exchange places in one continuous sweep.",
+  "scene": { "preset": "side-slide", "connectionStyle": "continuous", "durationFrames": 96, "params": { "outgoingAsset": "{{outgoingAsset}}", "incomingAsset": "{{incomingAsset}}" } },
+  "slots": [{ "id": "outgoingAsset", "type": "asset", "required": true }, { "id": "incomingAsset", "type": "asset", "required": true }],
+  "controls": { "durations": { "short": 2, "medium": 4, "long": 6 } }
+}

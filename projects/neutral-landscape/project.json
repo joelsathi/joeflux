@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Neutral landscape specimens",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "proof": "assets/proof.svg"
+  },
+  "scenes": [
+    {
+      "id": "product-proof",
+      "file": "scenes/product-proof.json"
+    },
+    {
+      "id": "brand-reveal",
+      "file": "scenes/brand-reveal.json"
+    }
+  ]
+}

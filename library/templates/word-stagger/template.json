@@ -1,0 +1,6 @@
+{
+  "id": "word-stagger", "label": "Word stagger", "category": "Titles", "description": "A headline arrives word by word with a clear reading hold.",
+  "scene": { "preset": "text-template", "durationFrames": 96, "params": { "eyebrow": "{{eyebrow}}", "title": "{{title}}", "subtitle": "{{subtitle}}" }, "textAnimation": { "template": "word-stagger" } },
+  "slots": [{ "id": "eyebrow", "type": "text", "maxLength": 28, "default": "INTRODUCING" }, { "id": "title", "type": "text", "maxLength": 72, "default": "Ideas in motion" }, { "id": "subtitle", "type": "text", "maxLength": 110, "default": "" }],
+  "controls": { "durations": { "short": 3, "medium": 4, "long": 6 } }
+}

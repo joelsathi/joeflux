@@ -1,0 +1,39 @@
+{
+  "id": "plugin-animejs",
+  "label": "Anime.js choreography",
+  "category": "Motion graphics",
+  "description": "Choreographed geometry with staggered timing.",
+  "scene": {
+    "plugin": "animejs",
+    "durationFrames": 120,
+    "pluginOptions": {
+      "quality": 1,
+      "color": "#74e7cd"
+    },
+    "params": {
+      "title": "{{title}}",
+      "subtitle": "{{subtitle}}"
+    }
+  },
+  "slots": [
+    {
+      "id": "title",
+      "type": "text",
+      "maxLength": 64,
+      "default": "Ideas in motion"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "maxLength": 100,
+      "default": "Open-source tools. Frame-perfect animation."
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 5,
+      "long": 7
+    }
+  }
+}

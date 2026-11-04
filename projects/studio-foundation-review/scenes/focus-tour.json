@@ -1,0 +1,71 @@
+{
+  "id": "focus-tour",
+  "kind": "screen",
+  "durationFrames": 96,
+  "theme": "oxygen-wso2-dark",
+  "background": {
+    "style": "static"
+  },
+  "screen": {
+    "asset": "overview",
+    "presentation": "studio",
+    "backdrop": "slate",
+    "fit": "contain",
+    "padding": 0.12,
+    "radius": 22,
+    "shadow": "floating",
+    "frame": "browser-dark",
+    "frameTitle": "console.example.com",
+    "lighting": {
+      "style": "glow",
+      "intensity": 0.65
+    }
+  },
+  "camera": {
+    "ease": "gentle",
+    "shots": [
+      {
+        "at": 0
+      },
+      {
+        "at": 0.24,
+        "focus": [
+          0.57,
+          0.5
+        ],
+        "zoom": 1.65
+      },
+      {
+        "at": 0.68,
+        "focus": [
+          0.57,
+          0.5
+        ],
+        "zoom": 1.65
+      },
+      {
+        "at": 1
+      }
+    ]
+  },
+  "caption": {
+    "text": "Focus on what matters.",
+    "placement": "bottom",
+    "animation": "line-wipe"
+  },
+  "compositor": {
+    "look": "cinematic",
+    "depthOfField": 0.18,
+    "light": 0.4
+  },
+  "motionBlur": {
+    "enabled": true,
+    "samples": 4,
+    "shutter": 0.65,
+    "accumulator": "webgl"
+  },
+  "transition": {
+    "type": "dip-black",
+    "frames": 8
+  }
+}

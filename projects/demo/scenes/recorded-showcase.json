@@ -1,0 +1,56 @@
+{
+  "id": "recorded-showcase",
+  "preset": "recorded-showcase",
+  "durationFrames": 144,
+  "params": {
+    "seed": 14821,
+    "eyebrow": "Recorded product view",
+    "title": "Guide attention without rushing it.",
+    "asset": "productScreen"
+  },
+  "camera": {
+    "start": {
+      "x": 0,
+      "y": 40,
+      "rotateX": 2,
+      "rotateY": -15,
+      "rotateZ": -1,
+      "scale": 0.86,
+      "focusX": 0.57,
+      "focusY": 0.57
+    },
+    "end": {
+      "x": -20,
+      "y": 20,
+      "rotateX": 0,
+      "rotateY": 0,
+      "rotateZ": 0,
+      "scale": 0.96,
+      "focusX": 0.54,
+      "focusY": 0.56
+    },
+    "easing": "easeInOut"
+  },
+  "playback": {
+    "sourceFps": 30,
+    "startFrame": 0,
+    "endFrame": 179,
+    "segments": [
+      {
+        "outputStart": 0,
+        "outputEnd": 64,
+        "rate": 1.5
+      }
+    ],
+    "holds": [
+      {
+        "outputStart": 96,
+        "outputEnd": 132
+      }
+    ]
+  },
+  "transition": {
+    "type": "crossfade",
+    "frames": 12
+  }
+}

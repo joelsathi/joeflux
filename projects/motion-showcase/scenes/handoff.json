@@ -1,0 +1,20 @@
+{
+  "id": "handoff",
+  "preset": "screen-handoff",
+  "durationFrames": 144,
+  "theme": "navy-dark",
+  "params": {
+    "outgoingAsset": "overview",
+    "incomingAsset": "activity",
+    "outgoingSeconds": 5.958333333333333,
+    "incomingSeconds": 0,
+    "eyebrow": "From context to action",
+    "title": "Move into the decision.",
+    "subtitle": "The next screen arrives with purpose.",
+    "items": [
+      "Context",
+      "Policy",
+      "Action"
+    ]
+  }
+}

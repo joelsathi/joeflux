@@ -1,0 +1,23 @@
+{
+  "id": "keyword-highlight",
+  "preset": "text-template",
+  "durationFrames": 120,
+  "theme": "oxygen-acrylic-orange-light",
+  "background": {
+    "style": "gradient-drift",
+    "intensity": 0.65,
+    "speed": 1
+  },
+  "textAnimation": {
+    "template": "keyword-highlight",
+    "entryFrames": 30,
+    "holdFrames": 65,
+    "exitFrames": 24,
+    "highlight": "important"
+  },
+  "params": {
+    "title": "Make the important thing clear.",
+    "eyebrow": "04 · Keyword highlight",
+    "subtitle": "A quiet background. A readable hold. A clean exit."
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "brand-reveal",
+  "label": "Brand reveal",
+  "category": "Brand motion",
+  "description": "An editable title, original geometry and next step with proportionate layouts in three formats.",
+  "scene": {
+    "kind": "composition",
+    "compositionVersion": 1,
+    "compositionFps": 24,
+    "durationFrames": 120,
+    "background": {
+      "style": "static",
+      "color": "#122238"
+    },
+    "components": [
+      {
+        "id": "accent",
+        "component": "harness/shape",
+        "version": "1.0.0",
+        "inputs": {
+          "color": "#66dcc8",
+          "treatment": "restrained",
+          "shape": "ring",
+          "scale": 0.9
+        },
+        "layout": {
+          "anchor": "center"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 100,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      },
+      {
+        "id": "headline",
+        "component": "harness/title",
+        "version": "1.0.0",
+        "inputs": {
+          "title": "{{title}}",
+          "subtitle": "{{subtitle}}",
+          "color": "#66dcc8",
+          "treatment": "restrained"
+        },
+        "layout": {
+          "anchor": "top"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 100,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      },
+      {
+        "id": "action",
+        "component": "harness/cta",
+        "version": "1.0.0",
+        "inputs": {
+          "title": "{{cta}}",
+          "subtitle": "",
+          "color": "#66dcc8",
+          "treatment": "restrained"
+        },
+        "layout": {
+          "anchor": "bottom"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 100,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      }
+    ]
+  },
+  "slots": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "text",
+      "required": true,
+      "maxLength": 100,
+      "default": "Ideas with a clear direction"
+    },
+    {
+      "id": "subtitle",
+      "label": "Supporting copy",
+      "type": "text",
+      "maxLength": 140,
+      "default": "Motion for your next chapter."
+    },
+    {
+      "id": "cta",
+      "label": "Call to action",
+      "type": "text",
+      "required": true,
+      "maxLength": 80,
+      "default": "Explore the next step"
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 5,
+      "long": 7
+    },
+    "fields": [
+      {
+        "id": "treatment",
+        "label": "Shape treatment",
+        "type": "select",
+        "path": "components.0.inputs.treatment",
+        "default": "restrained",
+        "options": [
+          {
+            "value": "restrained",
+            "label": "Restrained"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          }
+        ]
+      }
+    ]
+  }
+}

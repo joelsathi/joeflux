@@ -1,0 +1,23 @@
+{
+  "id": "focus-zoom",
+  "preset": "recorded-showcase",
+  "durationFrames": 144,
+  "theme": "oxygen-acrylic-purple-dark",
+  "background": {
+    "style": "static"
+  },
+  "params": {
+    "asset": "screen"
+  },
+  "cameraMotion": {
+    "preset": "focus-zoom",
+    "scale": 1.8,
+    "focusX": 0.45,
+    "focusY": 0.58,
+    "endFocusX": 0.82,
+    "endFocusY": 0.58
+  },
+  "playback": {
+    "startSeconds": 0
+  }
+}

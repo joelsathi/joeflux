@@ -1,0 +1,22 @@
+{
+  "id": "masked-lines",
+  "preset": "text-template",
+  "durationFrames": 120,
+  "theme": "oxygen-acrylic-purple-dark",
+  "background": {
+    "style": "gradient-drift",
+    "intensity": 0.65,
+    "speed": 1
+  },
+  "textAnimation": {
+    "template": "masked-lines",
+    "entryFrames": 30,
+    "holdFrames": 65,
+    "exitFrames": 24
+  },
+  "params": {
+    "title": "One idea.\nClearly revealed.",
+    "eyebrow": "01 · Masked line reveal",
+    "subtitle": "A quiet background. A readable hold. A clean exit."
+  }
+}

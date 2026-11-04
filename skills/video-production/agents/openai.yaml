@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Production"
+  short_description: "Plan, edit and review silent product demos"
+  default_prompt: "Use $video-production to plan, edit and review this silent product video."

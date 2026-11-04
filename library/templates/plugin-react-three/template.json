@@ -1,0 +1,39 @@
+{
+  "id": "plugin-react-three",
+  "label": "React Three Fiber sculpture",
+  "category": "3D",
+  "description": "React-authored interlocking rings with precise frame control.",
+  "scene": {
+    "plugin": "react-three",
+    "durationFrames": 120,
+    "pluginOptions": {
+      "quality": 1,
+      "color": "#9faaff"
+    },
+    "params": {
+      "title": "{{title}}",
+      "subtitle": "{{subtitle}}"
+    }
+  },
+  "slots": [
+    {
+      "id": "title",
+      "type": "text",
+      "maxLength": 64,
+      "default": "Build in dimensions"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "maxLength": 100,
+      "default": "Open-source tools. Frame-perfect animation."
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 5,
+      "long": 7
+    }
+  }
+}

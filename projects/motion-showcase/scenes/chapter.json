@@ -1,0 +1,10 @@
+{
+  "id": "chapter",
+  "preset": "chapter-opener",
+  "durationFrames": 96,
+  "params": {
+    "eyebrow": "A clearer product story",
+    "title": "Make the next step obvious.",
+    "subtitle": "Quiet motion. Space to understand."
+  }
+}

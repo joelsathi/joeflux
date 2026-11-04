@@ -1,0 +1,173 @@
+{
+  "id": "terminal-dark",
+  "label": "Terminal · Dark",
+  "category": "Explainers",
+  "description": "Replay editable commands and output with typing, scrolling and an optional second window. Start command lines with $; leave the second transcript empty for one window.",
+  "scene": {
+    "kind": "composition",
+    "compositionVersion": 1,
+    "compositionFps": 24,
+    "durationFrames": 288,
+    "background": {
+      "style": "static",
+      "color": "#101a2c"
+    },
+    "components": [
+      {
+        "id": "terminal",
+        "component": "harness/terminal",
+        "version": "1.0.0",
+        "inputs": {
+          "title": "{{title}}",
+          "subtitle": "{{subtitle}}",
+          "windowTitle": "{{windowTitle}}",
+          "transcript": "{{transcript}}",
+          "secondWindowTitle": "{{secondWindowTitle}}",
+          "secondTranscript": "{{secondTranscript}}",
+          "firstStep": "{{firstStep}}",
+          "secondStep": "{{secondStep}}",
+          "status": "{{status}}",
+          "palette": "dark",
+          "color": "#ff8754",
+          "typingSpeed": 45
+        },
+        "layout": {
+          "anchor": "full",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          }
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 268,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      }
+    ]
+  },
+  "slots": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "text",
+      "maxLength": 100,
+      "required": true,
+      "default": "From command to result"
+    },
+    {
+      "id": "subtitle",
+      "label": "Eyebrow",
+      "type": "text",
+      "maxLength": 120,
+      "required": false,
+      "default": "EXAMPLE SESSION"
+    },
+    {
+      "id": "windowTitle",
+      "label": "First window title",
+      "type": "text",
+      "maxLength": 64,
+      "required": true,
+      "default": "server — zsh"
+    },
+    {
+      "id": "transcript",
+      "label": "First transcript ($ command, then output)",
+      "type": "text",
+      "maxLength": 1000,
+      "required": true,
+      "default": "$ toolkit start\nReady on localhost:3000",
+      "multiline": true
+    },
+    {
+      "id": "secondWindowTitle",
+      "label": "Second window title",
+      "type": "text",
+      "maxLength": 64,
+      "required": false,
+      "default": "client — zsh"
+    },
+    {
+      "id": "secondTranscript",
+      "label": "Second transcript (empty for one window)",
+      "type": "text",
+      "maxLength": 1000,
+      "required": false,
+      "default": "$ toolkit status\n{\"status\":\"ready\"}",
+      "multiline": true
+    },
+    {
+      "id": "firstStep",
+      "label": "First step",
+      "type": "text",
+      "maxLength": 24,
+      "required": false,
+      "default": "Start"
+    },
+    {
+      "id": "secondStep",
+      "label": "Second step",
+      "type": "text",
+      "maxLength": 24,
+      "required": false,
+      "default": "Check"
+    },
+    {
+      "id": "status",
+      "label": "Result status",
+      "type": "text",
+      "maxLength": 80,
+      "required": false,
+      "default": "Ready to build"
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 8,
+      "medium": 12,
+      "long": 16
+    },
+    "fields": [
+      {
+        "id": "palette",
+        "label": "Terminal theme",
+        "type": "select",
+        "default": "dark",
+        "options": [
+          {
+            "value": "dark",
+            "label": "Dark"
+          },
+          {
+            "value": "light",
+            "label": "Light"
+          }
+        ],
+        "path": "components.0.inputs.palette"
+      },
+      {
+        "id": "color",
+        "label": "Accent color",
+        "type": "color",
+        "default": "#ff8754",
+        "path": "components.0.inputs.color"
+      },
+      {
+        "id": "typing-speed",
+        "label": "Typing speed (characters/second)",
+        "type": "number",
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "default": 45,
+        "path": "components.0.inputs.typingSpeed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "proof-reveal",
+  "label": "Proof reveal",
+  "category": "Product proof",
+  "description": "A title and supporting claim over the trusted Anime.js composition.",
+  "scene": {
+    "plugin": "animejs",
+    "durationFrames": 120,
+    "pluginOptions": { "color": "#74e7cd", "quality": 1 },
+    "params": { "title": "{{title}}", "subtitle": "{{subtitle}}" }
+  },
+  "slots": [
+    { "id": "title", "type": "text", "maxLength": 64, "default": "A visible result" },
+    { "id": "subtitle", "type": "text", "maxLength": 100, "default": "Replace this with your verified product claim." }
+  ],
+  "controls": {
+    "durations": { "short": 4, "medium": 5, "long": 7 },
+    "fields": [
+      { "id": "accent", "label": "Accent color", "type": "color", "path": "pluginOptions.color", "default": "#74e7cd" }
+    ]
+  }
+}

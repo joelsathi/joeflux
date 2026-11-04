@@ -1,0 +1,163 @@
+{
+  "id": "product-proof",
+  "label": "Product proof",
+  "category": "Product evidence",
+  "description": "An editable title, authentic proof media and next step, with an optional restrained or bold shape.",
+  "scene": {
+    "kind": "composition",
+    "compositionVersion": 1,
+    "compositionFps": 24,
+    "durationFrames": 144,
+    "background": {
+      "style": "static",
+      "color": "#122238"
+    },
+    "components": [
+      {
+        "id": "accent",
+        "component": "harness/shape",
+        "version": "1.0.0",
+        "inputs": {
+          "color": "#66dcc8",
+          "treatment": "restrained",
+          "shape": "pill",
+          "scale": 0.8
+        },
+        "layout": {
+          "anchor": "center"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 124,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      },
+      {
+        "id": "headline",
+        "component": "harness/title",
+        "version": "1.0.0",
+        "inputs": {
+          "title": "{{title}}",
+          "subtitle": "{{subtitle}}",
+          "color": "#66dcc8",
+          "treatment": "restrained"
+        },
+        "layout": {
+          "anchor": "top"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 124,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      },
+      {
+        "id": "evidence",
+        "component": "harness/proof",
+        "version": "1.0.0",
+        "inputs": {
+          "fit": "contain",
+          "radius": 20,
+          "color": "#66dcc8",
+          "asset": "{{asset}}"
+        },
+        "layout": {
+          "anchor": "center"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 124,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      },
+      {
+        "id": "action",
+        "component": "harness/cta",
+        "version": "1.0.0",
+        "inputs": {
+          "title": "{{cta}}",
+          "subtitle": "",
+          "color": "#66dcc8",
+          "treatment": "restrained"
+        },
+        "layout": {
+          "anchor": "bottom"
+        },
+        "timing": {
+          "startFrame": 0,
+          "entranceFrames": 12,
+          "holdFrames": 124,
+          "exitFrames": 8
+        },
+        "locks": {},
+        "seed": 1
+      }
+    ]
+  },
+  "slots": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "text",
+      "required": true,
+      "maxLength": 100,
+      "default": "A useful change, made visible"
+    },
+    {
+      "id": "subtitle",
+      "label": "Supporting copy",
+      "type": "text",
+      "maxLength": 140,
+      "default": "One concrete result."
+    },
+    {
+      "id": "cta",
+      "label": "Call to action",
+      "type": "text",
+      "required": true,
+      "maxLength": 80,
+      "default": "Explore the next step"
+    },
+    {
+      "id": "asset",
+      "label": "Proof media",
+      "type": "asset",
+      "required": true
+    }
+  ],
+  "controls": {
+    "durations": {
+      "short": 4,
+      "medium": 6,
+      "long": 8
+    },
+    "fields": [
+      {
+        "id": "treatment",
+        "label": "Shape treatment",
+        "type": "select",
+        "path": "components.0.inputs.treatment",
+        "default": "restrained",
+        "options": [
+          {
+            "value": "restrained",
+            "label": "Restrained"
+          },
+          {
+            "value": "bold",
+            "label": "Bold"
+          }
+        ]
+      }
+    ]
+  }
+}

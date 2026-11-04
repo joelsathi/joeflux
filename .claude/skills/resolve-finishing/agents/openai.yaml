@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resolve Finishing"
+  short_description: "Hand rendered silent clips to DaVinci Resolve"
+  default_prompt: "Use $resolve-finishing to prepare a DaVinci Resolve timeline from the approved clips."

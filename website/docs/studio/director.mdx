@@ -1,0 +1,45 @@
+---
+title: AI director
+description: Connect Claude Code, Codex or Copilot and direct the video in chat.
+---
+
+# AI director
+
+The Director panel runs an agent CLI you already have installed and signed in to. JoeFlux never handles your provider credentials; each CLI uses its own sign-in.
+
+<div className="row">
+  <div className="col col--5"><Screenshot src="/img/screens/director.png" alt="Director panel" caption="Brand kit, quick brief and chat in the Director panel." /></div>
+  <div className="col col--7">
+
+| Agent | How it runs |
+| --- | --- |
+| Claude Code | `claude -p` with streamed JSON, a strict MCP config and only the JoeFlux tools allowed. |
+| Codex | `codex exec --json` with the JoeFlux MCP server configured per run. |
+| GitHub Copilot CLI | Prompt mode with the JoeFlux MCP server added. |
+
+`pnpm run doctor` shows which CLIs are installed and signed in. Choose an agent in the panel header.
+
+  </div>
+</div>
+
+## Start with the brief
+
+Fill in the **quick brief**: audience, main message, visible evidence, format, duration, tone, call to action and brand. The director reads it with `brief_get` at the start of every turn and does not ask again about settled choices. **Grill this concept** starts an optional deep interview that asks only the questions whose prerequisites are already answered.
+
+## Ask for outcomes
+
+> "Build a short product walkthrough: introduce the feature, show the important action, hold on the result, then close with a next step."
+
+> "Skip the loading wait, hold the completed result for two seconds, and preview the transition into the next shot."
+
+> "Suggest better animation for this shot."
+
+For animation requests the director reads the `animation-engines` skill, offers two or three engine options with a recommendation, and waits for you to choose before changing anything.
+
+## What the director can and cannot do
+
+- Every change goes through a typed tool, appears as a card in the chat and can be undone from the card or the top bar.
+- After a visual change it calls `quality_review` and looks at three rendered frames itself. Its heuristics are not approval; you decide when a shot is right.
+- Tools never modify source recordings, and projects stay silent. Claude Code runs are limited to the JoeFlux tools; other CLIs keep their own permission settings, so use agents only with projects you trust.
+
+See [Agents and MCP](../architecture/agents.md) for how runs are isolated and [Token efficiency](../architecture/token-efficiency.mdx) for what each turn costs.

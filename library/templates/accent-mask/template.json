@@ -1,0 +1,6 @@
+{
+  "id": "accent-mask", "label": "Accent mask", "category": "Transitions", "description": "A band of brand color carries the cut to a new view.",
+  "scene": { "preset": "accent-mask", "durationFrames": 96, "params": { "outgoingAsset": "{{outgoingAsset}}", "incomingAsset": "{{incomingAsset}}" } },
+  "slots": [{ "id": "outgoingAsset", "type": "asset", "required": true }, { "id": "incomingAsset", "type": "asset", "required": true }],
+  "controls": { "durations": { "short": 2, "medium": 4, "long": 6 } }
+}

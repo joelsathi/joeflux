@@ -1,0 +1,46 @@
+{
+  "id": "glass-title",
+  "preset": "text-template",
+  "durationFrames": 72,
+  "theme": "oxygen-wso2-dark",
+  "background": {
+    "style": "static"
+  },
+  "params": {
+    "eyebrow": "A NEW STUDIO",
+    "title": "Ideas in motion",
+    "subtitle": "Create with clarity. Finish with confidence."
+  },
+  "textAnimation": {
+    "template": "word-stagger",
+    "placement": "center"
+  },
+  "compositor": {
+    "look": "neutral",
+    "light": 0.15
+  },
+  "layers": [
+    {
+      "type": "svg",
+      "asset": "spark",
+      "x": 0.08,
+      "y": 0.1,
+      "width": 0.11,
+      "height": 0.2,
+      "opacity": 0.9
+    },
+    {
+      "type": "lottie",
+      "asset": "orbit",
+      "x": 0.78,
+      "y": 0.68,
+      "width": 0.14,
+      "height": 0.24,
+      "opacity": 0.85
+    }
+  ],
+  "transition": {
+    "type": "circle-reveal",
+    "frames": 10
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "Motion showcase — silent",
+  "theme": "light-blue",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "h264",
+    "colorSpace": "bt709",
+    "audio": false
+  },
+  "assets": {
+    "overview": "assets/overview.mp4",
+    "activity": "assets/activity.mp4"
+  },
+  "scenes": [
+    {
+      "id": "chapter",
+      "file": "scenes/chapter.json"
+    },
+    {
+      "id": "reveal",
+      "file": "scenes/reveal.json"
+    },
+    {
+      "id": "handoff",
+      "file": "scenes/handoff.json"
+    },
+    {
+      "id": "focus",
+      "file": "scenes/focus.json"
+    },
+    {
+      "id": "problem",
+      "file": "scenes/problem.json"
+    }
+  ]
+}

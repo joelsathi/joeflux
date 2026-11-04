@@ -1,0 +1,11 @@
+{
+  "id": "reveal",
+  "preset": "product-reveal",
+  "durationFrames": 144,
+  "params": {
+    "asset": "overview",
+    "eyebrow": "Start with clarity",
+    "title": "One view. Every service.",
+    "subtitle": "Introduce the product, then let it speak."
+  }
+}

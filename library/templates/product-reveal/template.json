@@ -1,0 +1,6 @@
+{
+  "id": "product-reveal", "label": "Product reveal", "category": "Screen", "description": "An angled product settles beside the message and fills the frame.",
+  "scene": { "preset": "product-reveal", "connectionStyle": "continuous", "durationFrames": 144, "params": { "title": "{{title}}", "subtitle": "{{subtitle}}", "asset": "{{asset}}" } },
+  "slots": [{ "id": "asset", "type": "asset", "required": true }, { "id": "title", "type": "text", "maxLength": 64, "default": "See the difference" }, { "id": "subtitle", "type": "text", "maxLength": 100, "default": "Your work, in focus" }],
+  "controls": { "durations": { "short": 4, "medium": 6, "long": 8 } }
+}

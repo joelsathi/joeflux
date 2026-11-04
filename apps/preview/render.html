@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>JoeFlux renderer</title><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f8fbfd}#stage{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%}</style></head>
+<body><div id="stage"><canvas id="frame"></canvas></div>
+<script type="module">
+import { createSceneRenderer } from '/packages/renderer/src/browser-scene.js';
+import { accumulateFramesWebgl } from '/packages/motion/src/webgl-temporal.js';
+const canvas=document.querySelector('#frame');
+const project=await (await fetch('/project.json')).json();
+const render=createSceneRenderer(project);
+window.renderScene=async({sceneId,frame})=>{
+  const scene=project.scenes.find(entry=>entry.id===sceneId);
+  if(!scene)throw new Error(`Unknown scene ${sceneId}`);
+  return render(canvas,scene,frame);
+};
+window.renderPreviewScene=async({scene,frame})=>render(canvas,scene,frame);
+window.accumulateFramesWebgl=accumulateFramesWebgl;
+window.joeFluxReady=true;
+</script></body></html>
