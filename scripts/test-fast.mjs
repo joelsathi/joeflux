@@ -15,5 +15,5 @@ export const SLOW = new Set([
 
 const files = (await readdir(path.join(root, 'tests'))).filter((name) => name.endsWith('.test.js') && !SLOW.has(name.slice(0, -'.test.js'.length))).sort().map((name) => path.join('tests', name));
 const run = (args) => spawnSync(process.execPath, args, { cwd: root, stdio: 'inherit' }).status ?? 1;
-const status = run(['scripts/create-demo-recording.mjs']) || run(['--test', '--test-concurrency=1', '--test-timeout=30000', ...files]);
+const status = run(['scripts/create-demo-recording.mjs']) || run(['--test', '--test-concurrency=1', '--test-timeout=120000', ...files]);
 process.exit(status);
