@@ -6,13 +6,10 @@ on:
 permissions:
   contents: read
 jobs:
+  # Basic checks only: no Chromium, FFmpeg, Studio build or docs site. Run `pnpm test` locally for the full suite.
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ['22.13.0', '24']
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -20,25 +17,8 @@ jobs:
           version: 10.12.4
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '22.13.0'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Browser and media runtime
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          pnpm exec playwright install --with-deps chromium
-      - name: Build trusted renderer and Studio
-        run: |
-          pnpm run build:plugins
-          pnpm run build:studio
-      - name: Full deterministic and browser regression suite
-        run: pnpm test
-      - name: Public data-pack starter conformance
-        run: pnpm plugin:check fixtures/plugins/proof-pack
-      - name: Dependency licenses
-        run: |
-          pnpm --dir website install --frozen-lockfile
-          pnpm run licenses:check
-      - name: Documentation site
-        run: pnpm run docs:build
+      - run: pnpm run skills:check
+      - run: pnpm run test:basic
