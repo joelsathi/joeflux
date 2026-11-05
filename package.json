@@ -12,6 +12,7 @@
     "pretest": "node scripts/create-demo-recording.mjs",
     "test": "node --test --test-concurrency=1 --test-timeout=120000 tests/**/*.test.js",
     "test:fast": "node scripts/test-fast.mjs",
+    "test:basic": "node scripts/test-fast.mjs --basic",
     "validate": "node packages/cli/src/main.js validate",
     "doctor": "node packages/cli/src/main.js doctor",
     "preview": "node packages/cli/src/main.js preview",

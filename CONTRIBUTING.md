@@ -17,7 +17,7 @@ pnpm plugin:check fixtures/plugins/proof-pack
 pnpm run docs:build
 ```
 
-Use `pnpm run test:fast` while iterating; it skips the slow browser, Studio and render suites. Run `pnpm test` before handoff. After editing `skills/`, run `pnpm run skills:sync` to refresh the `.agents/skills` and `.claude/skills` mirrors (`pnpm run skills:check` fails on drift).
+Use `pnpm run test:fast` while iterating; it skips the slow browser, Studio and render suites. Run `pnpm test` before handoff; CI runs only `pnpm run test:basic`, which also skips every suite that needs Chromium or FFmpeg. After editing `skills/`, run `pnpm run skills:sync` to refresh the `.agents/skills` and `.claude/skills` mirrors (`pnpm run skills:check` fails on drift).
 
 ## Changes to code
 

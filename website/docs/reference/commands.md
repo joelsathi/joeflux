@@ -49,6 +49,7 @@ Run from the repository root. Arguments follow `--`.
 | --- | --- |
 | `pnpm test` | Run the full test suite (creates the demo recording if missing). |
 | `pnpm run test:fast` | Skip the slow browser, Studio and render suites (about 43 s instead of 3.5 min). |
+| `pnpm run test:basic` | Also skip every suite that needs Chromium or FFmpeg; this is what CI runs. |
 | `pnpm run build:studio` | Build the production Studio bundle. |
 | `pnpm run build:plugins` | Bundle the animation engines and check their licenses. |
 | `pnpm run licenses:check` | Check every dependency's license, including the docs site. |
