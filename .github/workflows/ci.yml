@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  # Basic checks only: no Chromium, FFmpeg, Studio build or docs site. Run `pnpm test` locally for the full suite.
+  # Basic checks only: no Chromium, FFmpeg, plugin bundles or docs site. Run `pnpm test` locally for the full suite.
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -21,4 +21,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run skills:check
+      - run: pnpm run build:studio
       - run: pnpm run test:basic
